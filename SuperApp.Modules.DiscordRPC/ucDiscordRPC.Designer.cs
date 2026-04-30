@@ -3,14 +3,14 @@
     partial class ucDiscordRPC
     {
         /// <summary> 
-        ///Gerekli tasarımcı değişkeni.
+        /// Gerekli tasarımcı değişkeni.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary> 
-        ///Kullanılan tüm kaynakları temizleyin.
+        /// Kullanılan tüm kaynakları temizleyin.
         /// </summary>
-        ///<param name="disposing">yönetilen kaynaklar dispose edilmeliyse doğru; aksi halde yanlış.</param>
+        /// <param name="disposing">yönetilen kaynaklar dispose edilmeliyse doğru; aksi halde yanlış.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,240 +22,242 @@
 
         #region Bileşen Tasarımcısı üretimi kod
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            lblTitle = new System.Windows.Forms.Label();
-            pnlCard = new System.Windows.Forms.Panel();
-            lblClientId = new System.Windows.Forms.Label();
-            txtClientId = new System.Windows.Forms.TextBox();
-            lblImageLink = new System.Windows.Forms.Label();
-            txtImageLink = new System.Windows.Forms.TextBox();
-            lblDetails = new System.Windows.Forms.Label();
-            txtDetails = new System.Windows.Forms.TextBox();
-            lblState = new System.Windows.Forms.Label();
-            txtState = new System.Windows.Forms.TextBox();
-            label1 = new System.Windows.Forms.Label();
-            btnConnect = new System.Windows.Forms.Button();
-            btnUpdate = new System.Windows.Forms.Button();
-            btnDisconnect = new System.Windows.Forms.Button();
-            lblStatus = new System.Windows.Forms.Label();
-            pnlCard.SuspendLayout();
-            SuspendLayout();
+            this.lblTitle = new System.Windows.Forms.Label();
+            this.pnlCard = new System.Windows.Forms.Panel();
+            this.lblClientId = new System.Windows.Forms.Label();
+            this.txtClientId = new System.Windows.Forms.TextBox();
+            this.lblImageLink = new System.Windows.Forms.Label();
+            this.txtImageLink = new System.Windows.Forms.TextBox();
+            this.lblDetails = new System.Windows.Forms.Label();
+            this.txtDetails = new System.Windows.Forms.TextBox();
+            this.lblState = new System.Windows.Forms.Label();
+            this.txtState = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnConnect = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
+            this.btnDisconnect = new System.Windows.Forms.Button();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.pnlCard.SuspendLayout();
+            this.SuspendLayout();
+            
             // 
             // lblTitle
             // 
-            lblTitle.AutoSize = true;
-            lblTitle.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)162));
-            lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)((byte)31)), ((int)((byte)41)), ((int)((byte)55)));
-            lblTitle.Location = new System.Drawing.Point(20, 20);
-            lblTitle.Name = "lblTitle";
-            lblTitle.Size = new System.Drawing.Size(435, 48);
-            lblTitle.TabIndex = 0;
-            lblTitle.Text = "Discord Durum Yönetimi";
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 162);
+            this.lblTitle.Location = new System.Drawing.Point(20, 20);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(298, 32);
+            this.lblTitle.TabIndex = 0;
+            this.lblTitle.Text = "Discord Durum Yönetimi";
+            
             // 
             // pnlCard
             // 
-            pnlCard.BackColor = System.Drawing.Color.White;
-            pnlCard.Controls.Add(lblClientId);
-            pnlCard.Controls.Add(txtClientId);
-            pnlCard.Controls.Add(lblImageLink);
-            pnlCard.Controls.Add(txtImageLink);
-            pnlCard.Controls.Add(lblDetails);
-            pnlCard.Controls.Add(txtDetails);
-            pnlCard.Controls.Add(lblState);
-            pnlCard.Controls.Add(txtState);
-            pnlCard.Controls.Add(label1);
-            pnlCard.Controls.Add(btnConnect);
-            pnlCard.Controls.Add(btnUpdate);
-            pnlCard.Controls.Add(btnDisconnect);
-            pnlCard.Controls.Add(lblStatus);
-            pnlCard.Location = new System.Drawing.Point(25, 70);
-            pnlCard.Name = "pnlCard";
-            pnlCard.Size = new System.Drawing.Size(761, 344);
-            pnlCard.TabIndex = 1;
+            this.pnlCard.Controls.Add(this.lblClientId);
+            this.pnlCard.Controls.Add(this.txtClientId);
+            this.pnlCard.Controls.Add(this.lblImageLink);
+            this.pnlCard.Controls.Add(this.txtImageLink);
+            this.pnlCard.Controls.Add(this.lblDetails);
+            this.pnlCard.Controls.Add(this.txtDetails);
+            this.pnlCard.Controls.Add(this.lblState);
+            this.pnlCard.Controls.Add(this.txtState);
+            this.pnlCard.Controls.Add(this.label1);
+            this.pnlCard.Controls.Add(this.btnConnect);
+            this.pnlCard.Controls.Add(this.btnUpdate);
+            this.pnlCard.Controls.Add(this.btnDisconnect);
+            this.pnlCard.Controls.Add(this.lblStatus);
+            this.pnlCard.Location = new System.Drawing.Point(25, 80);
+            this.pnlCard.Name = "pnlCard";
+            this.pnlCard.Size = new System.Drawing.Size(680, 360);
+            this.pnlCard.TabIndex = 1;
+            
             // 
             // lblClientId
             // 
-            lblClientId.AutoSize = true;
-            lblClientId.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)162));
-            lblClientId.ForeColor = System.Drawing.Color.FromArgb(((int)((byte)107)), ((int)((byte)114)), ((int)((byte)128)));
-            lblClientId.Location = new System.Drawing.Point(20, 20);
-            lblClientId.Name = "lblClientId";
-            lblClientId.Size = new System.Drawing.Size(90, 28);
-            lblClientId.TabIndex = 0;
-            lblClientId.Text = "Client ID";
+            this.lblClientId.AutoSize = true;
+            this.lblClientId.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 162);
+            this.lblClientId.Location = new System.Drawing.Point(20, 20);
+            this.lblClientId.Name = "lblClientId";
+            this.lblClientId.Size = new System.Drawing.Size(59, 17);
+            this.lblClientId.TabIndex = 0;
+            this.lblClientId.Text = "Client ID";
+            
             // 
             // txtClientId
             // 
-            txtClientId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            txtClientId.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)162));
-            txtClientId.Location = new System.Drawing.Point(20, 48);
-            txtClientId.Name = "txtClientId";
-            txtClientId.Size = new System.Drawing.Size(294, 34);
-            txtClientId.TabIndex = 1;
+            this.txtClientId.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162);
+            this.txtClientId.Location = new System.Drawing.Point(20, 45);
+            this.txtClientId.Name = "txtClientId";
+            this.txtClientId.Size = new System.Drawing.Size(300, 27);
+            this.txtClientId.TabIndex = 1;
+            
             // 
             // lblImageLink
             // 
-            lblImageLink.AutoSize = true;
-            lblImageLink.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)162));
-            lblImageLink.ForeColor = System.Drawing.Color.FromArgb(((int)((byte)107)), ((int)((byte)114)), ((int)((byte)128)));
-            lblImageLink.Location = new System.Drawing.Point(362, 20);
-            lblImageLink.Name = "lblImageLink";
-            lblImageLink.Size = new System.Drawing.Size(308, 28);
-            lblImageLink.TabIndex = 2;
-            lblImageLink.Text = "Resim Anahtarı (LargeImageKey)";
+            this.lblImageLink.AutoSize = true;
+            this.lblImageLink.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 162);
+            this.lblImageLink.Location = new System.Drawing.Point(350, 20);
+            this.lblImageLink.Name = "lblImageLink";
+            this.lblImageLink.Size = new System.Drawing.Size(206, 17);
+            this.lblImageLink.TabIndex = 2;
+            this.lblImageLink.Text = "Resim Anahtarı (LargeImageKey)";
+            
             // 
             // txtImageLink
             // 
-            txtImageLink.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            txtImageLink.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)162));
-            txtImageLink.Location = new System.Drawing.Point(362, 48);
-            txtImageLink.Name = "txtImageLink";
-            txtImageLink.Size = new System.Drawing.Size(372, 34);
-            txtImageLink.TabIndex = 3;
+            this.txtImageLink.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162);
+            this.txtImageLink.Location = new System.Drawing.Point(350, 45);
+            this.txtImageLink.Name = "txtImageLink";
+            this.txtImageLink.Size = new System.Drawing.Size(300, 27);
+            this.txtImageLink.TabIndex = 3;
+            
             // 
             // lblDetails
             // 
-            lblDetails.AutoSize = true;
-            lblDetails.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)162));
-            lblDetails.ForeColor = System.Drawing.Color.FromArgb(((int)((byte)107)), ((int)((byte)114)), ((int)((byte)128)));
-            lblDetails.Location = new System.Drawing.Point(20, 85);
-            lblDetails.Name = "lblDetails";
-            lblDetails.Size = new System.Drawing.Size(163, 28);
-            lblDetails.TabIndex = 4;
-            lblDetails.Text = "Üst Yazı (Details)";
+            this.lblDetails.AutoSize = true;
+            this.lblDetails.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 162);
+            this.lblDetails.Location = new System.Drawing.Point(20, 95);
+            this.lblDetails.Name = "lblDetails";
+            this.lblDetails.Size = new System.Drawing.Size(107, 17);
+            this.lblDetails.TabIndex = 4;
+            this.lblDetails.Text = "Üst Yazı (Details)";
+            
             // 
             // txtDetails
             // 
-            txtDetails.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            txtDetails.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)162));
-            txtDetails.Location = new System.Drawing.Point(20, 113);
-            txtDetails.Name = "txtDetails";
-            txtDetails.Size = new System.Drawing.Size(294, 34);
-            txtDetails.TabIndex = 5;
+            this.txtDetails.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162);
+            this.txtDetails.Location = new System.Drawing.Point(20, 120);
+            this.txtDetails.Name = "txtDetails";
+            this.txtDetails.Size = new System.Drawing.Size(300, 27);
+            this.txtDetails.TabIndex = 5;
+            
             // 
             // lblState
             // 
-            lblState.AutoSize = true;
-            lblState.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)162));
-            lblState.ForeColor = System.Drawing.Color.FromArgb(((int)((byte)107)), ((int)((byte)114)), ((int)((byte)128)));
-            lblState.Location = new System.Drawing.Point(362, 85);
-            lblState.Name = "lblState";
-            lblState.Size = new System.Drawing.Size(142, 28);
-            lblState.TabIndex = 6;
-            lblState.Text = "Alt Yazı (State)";
+            this.lblState.AutoSize = true;
+            this.lblState.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 162);
+            this.lblState.Location = new System.Drawing.Point(350, 95);
+            this.lblState.Name = "lblState";
+            this.lblState.Size = new System.Drawing.Size(94, 17);
+            this.lblState.TabIndex = 6;
+            this.lblState.Text = "Alt Yazı (State)";
+            
             // 
             // txtState
             // 
-            txtState.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            txtState.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)162));
-            txtState.Location = new System.Drawing.Point(362, 113);
-            txtState.Name = "txtState";
-            txtState.Size = new System.Drawing.Size(372, 34);
-            txtState.TabIndex = 7;
+            this.txtState.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162);
+            this.txtState.Location = new System.Drawing.Point(350, 120);
+            this.txtState.Name = "txtState";
+            this.txtState.Size = new System.Drawing.Size(300, 27);
+            this.txtState.TabIndex = 7;
+            
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)162));
-            label1.ForeColor = System.Drawing.Color.FromArgb(((int)((byte)156)), ((int)((byte)163)), ((int)((byte)175)));
-            label1.Location = new System.Drawing.Point(20, 155);
-            label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(592, 50);
-            label1.TabIndex = 8;
-            label1.Text = ("\"Bağlan\" butonuna bastıktan sonra \"Durumu Güncelle\" butonuna basarak\ndurumunuzu a" + "yarlayabilirsiniz.");
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, 162);
+            this.label1.Location = new System.Drawing.Point(20, 180);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(437, 34);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "\"Bağlan\" butonuna bastıktan sonra \"Durumu Güncelle\" butonuna basarak\r\ndurumunuzu ayarlayabilirsiniz.";
+            
             // 
             // btnConnect
             // 
-            btnConnect.BackColor = System.Drawing.Color.FromArgb(((int)((byte)37)), ((int)((byte)99)), ((int)((byte)235)));
-            btnConnect.Cursor = System.Windows.Forms.Cursors.Hand;
-            btnConnect.FlatAppearance.BorderSize = 0;
-            btnConnect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            btnConnect.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)162));
-            btnConnect.ForeColor = System.Drawing.Color.White;
-            btnConnect.Location = new System.Drawing.Point(20, 210);
-            btnConnect.Name = "btnConnect";
-            btnConnect.Size = new System.Drawing.Size(100, 35);
-            btnConnect.TabIndex = 9;
-            btnConnect.Text = "Bağlan";
-            btnConnect.UseVisualStyleBackColor = false;
-            btnConnect.Click += btnConnect_Click;
+            this.btnConnect.BackColor = System.Drawing.Color.FromArgb(37, 99, 235);
+            this.btnConnect.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnConnect.FlatAppearance.BorderSize = 0;
+            this.btnConnect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConnect.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 162);
+            this.btnConnect.ForeColor = System.Drawing.Color.White;
+            this.btnConnect.Location = new System.Drawing.Point(20, 240);
+            this.btnConnect.Name = "btnConnect";
+            this.btnConnect.Size = new System.Drawing.Size(120, 38);
+            this.btnConnect.TabIndex = 9;
+            this.btnConnect.Text = "Bağlan";
+            this.btnConnect.UseVisualStyleBackColor = false;
+            
             // 
             // btnUpdate
             // 
-            btnUpdate.BackColor = System.Drawing.Color.FromArgb(((int)((byte)16)), ((int)((byte)185)), ((int)((byte)129)));
-            btnUpdate.Cursor = System.Windows.Forms.Cursors.Hand;
-            btnUpdate.FlatAppearance.BorderSize = 0;
-            btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            btnUpdate.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)162));
-            btnUpdate.ForeColor = System.Drawing.Color.White;
-            btnUpdate.Location = new System.Drawing.Point(135, 210);
-            btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new System.Drawing.Size(140, 35);
-            btnUpdate.TabIndex = 10;
-            btnUpdate.Text = "Durumu Güncelle";
-            btnUpdate.UseVisualStyleBackColor = false;
-            btnUpdate.Click += btnUpdate_Click;
+            this.btnUpdate.BackColor = System.Drawing.Color.FromArgb(16, 185, 129);
+            this.btnUpdate.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUpdate.FlatAppearance.BorderSize = 0;
+            this.btnUpdate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdate.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 162);
+            this.btnUpdate.ForeColor = System.Drawing.Color.White;
+            this.btnUpdate.Location = new System.Drawing.Point(150, 240);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(150, 38);
+            this.btnUpdate.TabIndex = 10;
+            this.btnUpdate.Text = "Durumu Güncelle";
+            this.btnUpdate.UseVisualStyleBackColor = false;
+            
             // 
             // btnDisconnect
             // 
-            btnDisconnect.BackColor = System.Drawing.Color.FromArgb(((int)((byte)239)), ((int)((byte)68)), ((int)((byte)68)));
-            btnDisconnect.Cursor = System.Windows.Forms.Cursors.Hand;
-            btnDisconnect.Enabled = false;
-            btnDisconnect.FlatAppearance.BorderSize = 0;
-            btnDisconnect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            btnDisconnect.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)162));
-            btnDisconnect.ForeColor = System.Drawing.Color.White;
-            btnDisconnect.Location = new System.Drawing.Point(290, 210);
-            btnDisconnect.Name = "btnDisconnect";
-            btnDisconnect.Size = new System.Drawing.Size(203, 35);
-            btnDisconnect.TabIndex = 11;
-            btnDisconnect.Text = "Bağlantıyı Kes";
-            btnDisconnect.UseVisualStyleBackColor = false;
-            btnDisconnect.Click += btnDisconnect_Click;
+            this.btnDisconnect.BackColor = System.Drawing.Color.FromArgb(239, 68, 68);
+            this.btnDisconnect.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDisconnect.Enabled = false;
+            this.btnDisconnect.FlatAppearance.BorderSize = 0;
+            this.btnDisconnect.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDisconnect.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 162);
+            this.btnDisconnect.ForeColor = System.Drawing.Color.White;
+            this.btnDisconnect.Location = new System.Drawing.Point(310, 240);
+            this.btnDisconnect.Name = "btnDisconnect";
+            this.btnDisconnect.Size = new System.Drawing.Size(150, 38);
+            this.btnDisconnect.TabIndex = 11;
+            this.btnDisconnect.Text = "Bağlantıyı Kes";
+            this.btnDisconnect.UseVisualStyleBackColor = false;
+            
             // 
             // lblStatus
             // 
-            lblStatus.AutoSize = true;
-            lblStatus.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)162));
-            lblStatus.ForeColor = System.Drawing.Color.FromArgb(((int)((byte)245)), ((int)((byte)158)), ((int)((byte)11)));
-            lblStatus.Location = new System.Drawing.Point(20, 265);
-            lblStatus.Name = "lblStatus";
-            lblStatus.Size = new System.Drawing.Size(202, 28);
-            lblStatus.TabIndex = 12;
-            lblStatus.Text = "Durum: Bekleniyor...";
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 162);
+            this.lblStatus.ForeColor = System.Drawing.Color.FromArgb(245, 158, 11);
+            this.lblStatus.Location = new System.Drawing.Point(20, 310);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(147, 20);
+            this.lblStatus.TabIndex = 12;
+            this.lblStatus.Text = "Durum: Bekleniyor...";
+            
             // 
             // ucDiscordRPC
             // 
-            BackColor = System.Drawing.Color.FromArgb(((int)((byte)243)), ((int)((byte)244)), ((int)((byte)246)));
-            Controls.Add(pnlCard);
-            Controls.Add(lblTitle);
-            Size = new System.Drawing.Size(813, 442);
-            pnlCard.ResumeLayout(false);
-            pnlCard.PerformLayout();
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.pnlCard);
+            this.Controls.Add(this.lblTitle);
+            this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162);
+            this.Name = "ucDiscordRPC";
+            this.Size = new System.Drawing.Size(750, 480);
+            this.pnlCard.ResumeLayout(false);
+            this.pnlCard.PerformLayout();
+            this.ResumeLayout(false);
+            this.PerformLayout();
         }
 
         #endregion
-        private Label lblTitle;
+
+        private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Panel pnlCard;
-        private Label lblClientId;
+        private System.Windows.Forms.Label lblClientId;
         private System.Windows.Forms.TextBox txtClientId;
         private System.Windows.Forms.Label lblImageLink;
         private System.Windows.Forms.TextBox txtImageLink;
-        private Label lblDetails;
+        private System.Windows.Forms.Label lblDetails;
         private System.Windows.Forms.TextBox txtDetails;
         private System.Windows.Forms.Label lblState;
         private System.Windows.Forms.TextBox txtState;
-        private Label label1; // Bilgi yazısı
-        private Label lblStatus;
-        private Button btnConnect;
-        private Button btnUpdate;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.Button btnConnect;
+        private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnDisconnect;
     }
 }

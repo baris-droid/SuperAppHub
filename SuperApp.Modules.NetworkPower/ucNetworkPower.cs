@@ -3,7 +3,8 @@ using System.Drawing;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using SuperApp.Core;
+using SuperApp.Core;   
+using SuperApp.Core.UI;
 
 namespace SmartApp
 {
@@ -15,7 +16,10 @@ namespace SmartApp
 
         public ucNetworkPower()
         {
+            ThemeManager.SetTheme(SettingsManager.Instance.Current.IsDarkMode);
             InitializeComponent();
+            ThemeManager.ThemeChanged += (s, e) => ApplyTheme();
+            ApplyTheme(); // Temayı uyguluyoruz
             _networkBackend = new NetworkPowerNativeWrapper();
 
             // Arayüzü bellekteki ayarlarla dolduruyoruz
@@ -32,6 +36,43 @@ namespace SmartApp
 
             cmbActionType.SelectedIndexChanged -= UIElement_ValueChanged;
             cmbActionType.SelectedIndexChanged += UIElement_ValueChanged;
+        }
+
+        private void ApplyTheme()
+        {
+            // Ana arka plan
+            this.BackColor = ThemeManager.ContentBackground;
+
+            // Kart Paneli
+            pnlCard.BackColor = ThemeManager.SidebarBackground;
+
+            // Uyarı (Alert) Kartı Tasarımı (Kırmızı Alert Box Standardı)
+            pnlAlert.BackColor = Color.FromArgb(254, 242, 242); // Açık kırmızımsı arka plan
+            lblAlertIcon.ForeColor = Color.FromArgb(220, 38, 38); // Kırmızı ikon
+            label4.ForeColor = Color.FromArgb(153, 27, 27); // Koyu kırmızı yazı
+
+            // Başlıklar
+            lblPageTitle.ForeColor = ThemeManager.TextPrimary;
+            lblCardTitle.ForeColor = ThemeManager.TextPrimary;
+            lblStatus.ForeColor = ThemeManager.TextSecondary;
+
+            // Etiketler
+            label1.ForeColor = ThemeManager.TextSecondary;
+            label2.ForeColor = ThemeManager.TextSecondary;
+            label3.ForeColor = ThemeManager.TextSecondary;
+
+            // Girdi Elemanları (TextBox / Numeric / Combo)
+            numThreshold.BackColor = ThemeManager.ContentBackground;
+            numThreshold.ForeColor = ThemeManager.TextPrimary;
+            numWaitTime.BackColor = ThemeManager.ContentBackground;
+            numWaitTime.ForeColor = ThemeManager.TextPrimary;
+            cmbActionType.BackColor = ThemeManager.ContentBackground;
+            cmbActionType.ForeColor = ThemeManager.TextPrimary;
+
+            // Buton (Başlangıç durumu)
+            btnToggleMonitor.BackColor = ThemeManager.AccentColor;
+            
+            ThemeManager.FormatControls(this.Controls);
         }
 
         // --- ARAYÜZ YÜKLEME ---
@@ -91,7 +132,8 @@ namespace SmartApp
         {
             _isMonitoring = true;
             btnToggleMonitor.Text = "İzlemeyi Durdur";
-            UpdateStatusLabel("Durum: İzleniyor...", Color.Blue);
+            btnToggleMonitor.BackColor = Color.FromArgb(239, 68, 68); // İptal rengi kırmızı (Red-500)
+            UpdateStatusLabel("Durum: İzleniyor...", Color.FromArgb(16, 185, 129)); // Yeşil Status (Emerald-500)
 
             // Arka plan görevini anında iptal edebilmek için token oluşturuyoruz
             _cancellationTokenSource = new CancellationTokenSource();
@@ -114,16 +156,16 @@ namespace SmartApp
                     ulong currentBytes = _networkBackend.GetTotalBytesReceived();
                     double currentSpeedKbps = (currentBytes - initialBytes) / 1024.0;
 
-                    UpdateStatusLabel($"Anlık Hız: {currentSpeedKbps:F2} KB/s", Color.Blue);
+                    UpdateStatusLabel($"Anlık Hız: {currentSpeedKbps:F2} KB/s", ThemeManager.AccentColor);
 
                     if (currentSpeedKbps < thresholdKbps)
                     {
                         idleCounter++;
-                        UpdateStatusLabel($"Düşük Hız! Kalan Süre: {waitTimeSeconds - idleCounter} sn", Color.DarkOrange);
+                        UpdateStatusLabel($"Düşük Hız! Kalan Süre: {waitTimeSeconds - idleCounter} sn", Color.FromArgb(245, 158, 11)); // Turuncu/Sarı (Amber-500)
 
                         if (idleCounter >= waitTimeSeconds)
                         {
-                            UpdateStatusLabel("İşlem tamamlandı, sistem tetikleniyor...", Color.Red);
+                            UpdateStatusLabel("İşlem tamamlandı, sistem tetikleniyor...", Color.FromArgb(239, 68, 68)); // Kırmızı
                             ExecutePowerAction(settings.NetworkActionType);
                             StopMonitoring();
                             break;
@@ -134,7 +176,7 @@ namespace SmartApp
                         if (idleCounter > 0)
                         {
                             idleCounter = 0;
-                            UpdateStatusLabel("Hız yükseldi, sayaç sıfırlandı.", Color.Green);
+                            UpdateStatusLabel("Hız yükseldi, sayaç sıfırlandı.", Color.FromArgb(16, 185, 129)); // Yeşil (Emerald-500)
                         }
                     }
                 }
@@ -142,7 +184,7 @@ namespace SmartApp
             catch (TaskCanceledException)
             {
                 // Kullanıcı butona basarak izlemeyi durdurduğunda uygulama çökmek yerine buraya düşer
-                UpdateStatusLabel("Durum: İzleme iptal edildi.", Color.Black);
+                UpdateStatusLabel("Durum: İzleme iptal edildi.", ThemeManager.TextSecondary);
             }
             catch (Exception ex)
             {
@@ -166,6 +208,8 @@ namespace SmartApp
             _cancellationTokenSource?.Cancel(); // Beklemeyi (Task.Delay) anında keser
 
             btnToggleMonitor.Text = "İzlemeyi Başlat";
+            btnToggleMonitor.BackColor = ThemeManager.AccentColor; // Orijinal mavi renge dön
+            UpdateStatusLabel("Durum: Durduruldu.", ThemeManager.TextSecondary);
         }
 
         // Thread Safe Arayüz Güncellemesi

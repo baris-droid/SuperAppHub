@@ -1,17 +1,9 @@
-﻿// ucMainMenu.Designer.cs
-namespace SmartApp
+﻿namespace SmartApp
 {
     partial class MainMenuControl
     {
-        /// <summary> 
-        /// Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary> 
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -23,127 +15,142 @@ namespace SmartApp
 
         #region Component Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            lblWelcome = new System.Windows.Forms.Label();
-            pnlSettingsCard = new System.Windows.Forms.Panel();
-            chkMinimizeToTray = new System.Windows.Forms.CheckBox();
-            lblSettingsTitle = new System.Windows.Forms.Label();
-            pnlInfoCard = new System.Windows.Forms.Panel();
-            lblInfoDesc = new System.Windows.Forms.Label();
-            lblInfoTitle = new System.Windows.Forms.Label();
-            pnlSettingsCard.SuspendLayout();
-            pnlInfoCard.SuspendLayout();
-            SuspendLayout();
+            this.lblWelcome = new System.Windows.Forms.Label();
+            this.pnlSettingsCard = new System.Windows.Forms.Panel();
+            this.chkDarkMode = new System.Windows.Forms.CheckBox();
+            this.chkMinimizeToTray = new System.Windows.Forms.CheckBox();
+            this.lblSettingsTitle = new System.Windows.Forms.Label();
+            this.pnlInfoCard = new System.Windows.Forms.Panel();
+            this.lblInfoDesc = new System.Windows.Forms.Label();
+            this.lblInfoTitle = new System.Windows.Forms.Label();
+            this.pnlSettingsCard.SuspendLayout();
+            this.pnlInfoCard.SuspendLayout();
+            this.SuspendLayout();
+            
             // 
             // lblWelcome
             // 
-            lblWelcome.AutoSize = true;
-            lblWelcome.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)162));
-            lblWelcome.ForeColor = System.Drawing.Color.FromArgb(((int)((byte)31)), ((int)((byte)41)), ((int)((byte)55)));
-            lblWelcome.Location = new System.Drawing.Point(20, 20);
-            lblWelcome.Name = "lblWelcome";
-            lblWelcome.Size = new System.Drawing.Size(521, 48);
-            lblWelcome.TabIndex = 0;
-            lblWelcome.Text = "Kontrol Paneline Hoş Geldiniz";
+            this.lblWelcome.AutoSize = true;
+            this.lblWelcome.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 162);
+            this.lblWelcome.Location = new System.Drawing.Point(20, 20);
+            this.lblWelcome.Name = "lblWelcome";
+            this.lblWelcome.Size = new System.Drawing.Size(359, 32);
+            this.lblWelcome.TabIndex = 0;
+            this.lblWelcome.Text = "Kontrol Paneline Hoş Geldiniz";
+            
             // 
             // pnlSettingsCard
             // 
-            pnlSettingsCard.BackColor = System.Drawing.Color.White;
-            pnlSettingsCard.Controls.Add(chkMinimizeToTray);
-            pnlSettingsCard.Controls.Add(lblSettingsTitle);
-            pnlSettingsCard.Location = new System.Drawing.Point(25, 80);
-            pnlSettingsCard.Name = "pnlSettingsCard";
-            pnlSettingsCard.Size = new System.Drawing.Size(459, 100);
-            pnlSettingsCard.TabIndex = 1;
+            this.pnlSettingsCard.Controls.Add(this.chkDarkMode);
+            this.pnlSettingsCard.Controls.Add(this.chkMinimizeToTray);
+            this.pnlSettingsCard.Controls.Add(this.lblSettingsTitle);
+            this.pnlSettingsCard.Location = new System.Drawing.Point(25, 80);
+            this.pnlSettingsCard.Name = "pnlSettingsCard";
+            this.pnlSettingsCard.Size = new System.Drawing.Size(500, 135);
+            this.pnlSettingsCard.TabIndex = 1;
+            
+            // 
+            // chkDarkMode
+            // 
+            this.chkDarkMode.AutoSize = true;
+            this.chkDarkMode.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chkDarkMode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chkDarkMode.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162);
+            this.chkDarkMode.Location = new System.Drawing.Point(20, 85);
+            this.chkDarkMode.Name = "chkDarkMode";
+            this.chkDarkMode.Size = new System.Drawing.Size(155, 23);
+            this.chkDarkMode.TabIndex = 4;
+            this.chkDarkMode.Text = "Karanlık Tema Kullan";
+            this.chkDarkMode.UseVisualStyleBackColor = true;
+            this.chkDarkMode.CheckedChanged += new System.EventHandler(this.chkDarkMode_CheckedChanged);
+            
             // 
             // chkMinimizeToTray
             // 
-            chkMinimizeToTray.AutoSize = true;
-            chkMinimizeToTray.Cursor = System.Windows.Forms.Cursors.Hand;
-            chkMinimizeToTray.FlatAppearance.CheckedBackColor = System.Drawing.Color.FromArgb(((int)((byte)37)), ((int)((byte)99)), ((int)((byte)235)));
-            chkMinimizeToTray.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            chkMinimizeToTray.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)162));
-            chkMinimizeToTray.ForeColor = System.Drawing.Color.FromArgb(((int)((byte)75)), ((int)((byte)85)), ((int)((byte)99)));
-            chkMinimizeToTray.Location = new System.Drawing.Point(20, 50);
-            chkMinimizeToTray.Name = "chkMinimizeToTray";
-            chkMinimizeToTray.Size = new System.Drawing.Size(322, 32);
-            chkMinimizeToTray.TabIndex = 3;
-            chkMinimizeToTray.Text = "Çarpıya basınca arka plana küçült";
-            chkMinimizeToTray.UseVisualStyleBackColor = true;
-            chkMinimizeToTray.CheckedChanged += chkMinimizeToTray_CheckedChanged;
+            this.chkMinimizeToTray.AutoSize = true;
+            this.chkMinimizeToTray.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.chkMinimizeToTray.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.chkMinimizeToTray.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162);
+            this.chkMinimizeToTray.Location = new System.Drawing.Point(20, 50);
+            this.chkMinimizeToTray.Name = "chkMinimizeToTray";
+            this.chkMinimizeToTray.Size = new System.Drawing.Size(227, 23);
+            this.chkMinimizeToTray.TabIndex = 3;
+            this.chkMinimizeToTray.Text = "Çarpıya basınca arka plana küçült";
+            this.chkMinimizeToTray.UseVisualStyleBackColor = true;
+            this.chkMinimizeToTray.CheckedChanged += new System.EventHandler(this.chkMinimizeToTray_CheckedChanged);
+            
             // 
             // lblSettingsTitle
             // 
-            lblSettingsTitle.AutoSize = true;
-            lblSettingsTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)162));
-            lblSettingsTitle.ForeColor = System.Drawing.Color.FromArgb(((int)((byte)55)), ((int)((byte)65)), ((int)((byte)81)));
-            lblSettingsTitle.Location = new System.Drawing.Point(15, 15);
-            lblSettingsTitle.Name = "lblSettingsTitle";
-            lblSettingsTitle.Size = new System.Drawing.Size(162, 32);
-            lblSettingsTitle.TabIndex = 2;
-            lblSettingsTitle.Text = "Genel Ayarlar";
+            this.lblSettingsTitle.AutoSize = true;
+            this.lblSettingsTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 162);
+            this.lblSettingsTitle.Location = new System.Drawing.Point(15, 15);
+            this.lblSettingsTitle.Name = "lblSettingsTitle";
+            this.lblSettingsTitle.Size = new System.Drawing.Size(109, 21);
+            this.lblSettingsTitle.TabIndex = 2;
+            this.lblSettingsTitle.Text = "Genel Ayarlar";
+            
             // 
             // pnlInfoCard
             // 
-            pnlInfoCard.BackColor = System.Drawing.Color.White;
-            pnlInfoCard.Controls.Add(lblInfoDesc);
-            pnlInfoCard.Controls.Add(lblInfoTitle);
-            pnlInfoCard.Location = new System.Drawing.Point(25, 200);
-            pnlInfoCard.Name = "pnlInfoCard";
-            pnlInfoCard.Size = new System.Drawing.Size(459, 120);
-            pnlInfoCard.TabIndex = 4;
+            this.pnlInfoCard.Controls.Add(this.lblInfoDesc);
+            this.pnlInfoCard.Controls.Add(this.lblInfoTitle);
+            this.pnlInfoCard.Location = new System.Drawing.Point(25, 235);
+            this.pnlInfoCard.Name = "pnlInfoCard";
+            this.pnlInfoCard.Size = new System.Drawing.Size(500, 120);
+            this.pnlInfoCard.TabIndex = 4;
+            
             // 
             // lblInfoDesc
             // 
-            lblInfoDesc.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)162));
-            lblInfoDesc.ForeColor = System.Drawing.Color.FromArgb(((int)((byte)107)), ((int)((byte)114)), ((int)((byte)128)));
-            lblInfoDesc.Location = new System.Drawing.Point(16, 46);
-            lblInfoDesc.Name = "lblInfoDesc";
-            lblInfoDesc.Size = new System.Drawing.Size(440, 60);
-            lblInfoDesc.TabIndex = 1;
-            lblInfoDesc.Text = ("Tüm modüller aktif ve çalışıyor. Sol menüyü kullanarak özellikler arasında geçiş " + "yapabilirsiniz.");
+            this.lblInfoDesc.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162);
+            this.lblInfoDesc.Location = new System.Drawing.Point(16, 46);
+            this.lblInfoDesc.Name = "lblInfoDesc";
+            this.lblInfoDesc.Size = new System.Drawing.Size(460, 60);
+            this.lblInfoDesc.TabIndex = 1;
+            this.lblInfoDesc.Text = "Tüm modüller aktif ve çalışıyor. Sol menüyü kullanarak özellikler arasında geçiş yapabilirsiniz.";
+            
             // 
             // lblInfoTitle
             // 
-            lblInfoTitle.AutoSize = true;
-            lblInfoTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)162));
-            lblInfoTitle.ForeColor = System.Drawing.Color.FromArgb(((int)((byte)55)), ((int)((byte)65)), ((int)((byte)81)));
-            lblInfoTitle.Location = new System.Drawing.Point(15, 15);
-            lblInfoTitle.Name = "lblInfoTitle";
-            lblInfoTitle.Size = new System.Drawing.Size(182, 32);
-            lblInfoTitle.TabIndex = 0;
-            lblInfoTitle.Text = "Sistem Durumu";
+            this.lblInfoTitle.AutoSize = true;
+            this.lblInfoTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 162);
+            this.lblInfoTitle.Location = new System.Drawing.Point(15, 15);
+            this.lblInfoTitle.Name = "lblInfoTitle";
+            this.lblInfoTitle.Size = new System.Drawing.Size(123, 21);
+            this.lblInfoTitle.TabIndex = 0;
+            this.lblInfoTitle.Text = "Sistem Durumu";
+            
             // 
-            // ucMainMenu
+            // MainMenuControl
             // 
-            BackColor = System.Drawing.Color.FromArgb(((int)((byte)243)), ((int)((byte)244)), ((int)((byte)246)));
-            Controls.Add(pnlInfoCard);
-            Controls.Add(pnlSettingsCard);
-            Controls.Add(lblWelcome);
-            Size = new System.Drawing.Size(567, 400);
-            pnlSettingsCard.ResumeLayout(false);
-            pnlSettingsCard.PerformLayout();
-            pnlInfoCard.ResumeLayout(false);
-            pnlInfoCard.PerformLayout();
-            ResumeLayout(false);
-            PerformLayout();
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.pnlInfoCard);
+            this.Controls.Add(this.pnlSettingsCard);
+            this.Controls.Add(this.lblWelcome);
+            this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162);
+            this.Name = "MainMenuControl";
+            this.Size = new System.Drawing.Size(600, 450);
+            this.pnlSettingsCard.ResumeLayout(false);
+            this.pnlSettingsCard.PerformLayout();
+            this.pnlInfoCard.ResumeLayout(false);
+            this.pnlInfoCard.PerformLayout();
+            this.ResumeLayout(false);
+            this.PerformLayout();
         }
 
         #endregion
 
-        // Arayüz elemanlarının tanımlamaları
-        private Label lblWelcome;
+        private System.Windows.Forms.Label lblWelcome;
         private System.Windows.Forms.Panel pnlSettingsCard;
-        private Label lblSettingsTitle;
-        private CheckBox chkMinimizeToTray;
-
+        private System.Windows.Forms.CheckBox chkDarkMode; // YENİ EKLENEN
+        private System.Windows.Forms.CheckBox chkMinimizeToTray;
+        private System.Windows.Forms.Label lblSettingsTitle;
         private System.Windows.Forms.Panel pnlInfoCard;
-        private Label lblInfoTitle;
         private System.Windows.Forms.Label lblInfoDesc;
+        private System.Windows.Forms.Label lblInfoTitle;
     }
 }

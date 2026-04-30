@@ -9,13 +9,12 @@ namespace SmartApp
         public frmEyeNotification()
         {
             InitializeComponent();
-
-            // 1. KUSURSUZ GÖRÜNÜM AYARLARI
+            
             this.FormBorderStyle = FormBorderStyle.None;
             this.ShowInTaskbar = false; // Görev çubuğunda simge çıkmasın
             this.TopMost = true; // Her zaman en üstte olsun
             this.BackColor = Color.Black;
-            this.Opacity = 0.85; // %85 şeffaflık
+            this.Opacity = 0.85; // Varsayılan %85 şeffaflık (Daha sonra Settings'den güncellenecek)
             this.Size = new Size(450, 150); // Net bir boyut atıyoruz
 
             // ÇOK KRİTİK: Manuel lokasyon ayarının çalışması için Windows'un varsayılanını kapatıyoruz!
@@ -81,6 +80,5 @@ namespace SmartApp
             // Örn: 85 geldiğinde 85 / 100.0 = 0.85 yapar
             this.Opacity = opacityPercentage / 100.0;
         }
-
     }
 }

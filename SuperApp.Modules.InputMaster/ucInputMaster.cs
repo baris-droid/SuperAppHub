@@ -3,7 +3,8 @@ using System.Drawing;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using SuperApp.Core;
+using SuperApp.Core;    
+using SuperApp.Core.UI; 
 
 namespace SmartApp
 {
@@ -18,7 +19,10 @@ namespace SmartApp
 
         public ucInputMaster()
         {
+            ThemeManager.SetTheme(SettingsManager.Instance.Current.IsDarkMode);
             InitializeComponent();
+            ThemeManager.ThemeChanged += (s, e) => ApplyTheme();
+            ApplyTheme(); // Temayı uyguluyoruz
 
             _inputBackend = new InputMasterNativeWrapper();
 
@@ -50,6 +54,47 @@ namespace SmartApp
 
             numVolSens.ValueChanged -= UIElement_ValueChanged;
             numVolSens.ValueChanged += UIElement_ValueChanged;
+        }
+
+        private void ApplyTheme()
+        {
+            // Ana arka plan
+            this.BackColor = ThemeManager.ContentBackground;
+
+            // Kart Panelleri
+            pnlControl.BackColor = ThemeManager.SidebarBackground;
+            pnlScrollCard.BackColor = ThemeManager.SidebarBackground;
+            pnlVolumeCard.BackColor = ThemeManager.SidebarBackground;
+
+            // Başlıklar
+            lblPageTitle.ForeColor = ThemeManager.TextPrimary;
+            lblScrollTitle.ForeColor = ThemeManager.TextPrimary;
+            lblVolumeTitle.ForeColor = ThemeManager.TextPrimary;
+            lblStatus.ForeColor = ThemeManager.TextSecondary;
+
+            // Etiketler
+            label1.ForeColor = ThemeManager.TextSecondary;
+            label2.ForeColor = ThemeManager.TextSecondary;
+
+            // Sayı Seçiciler (NumericUpDown)
+            numScrollMult.BackColor = ThemeManager.ContentBackground;
+            numScrollMult.ForeColor = ThemeManager.TextPrimary;
+            numVolSens.BackColor = ThemeManager.ContentBackground;
+            numVolSens.ForeColor = ThemeManager.TextPrimary;
+
+            // Tuş Atama Butonları
+            btnSetScrollKey.BackColor = ThemeManager.ContentBackground;
+            btnSetScrollKey.ForeColor = ThemeManager.TextPrimary;
+            btnSetScrollKey.FlatAppearance.BorderColor = ThemeManager.ButtonDown;
+
+            btnSetVolumeKey.BackColor = ThemeManager.ContentBackground;
+            btnSetVolumeKey.ForeColor = ThemeManager.TextPrimary;
+            btnSetVolumeKey.FlatAppearance.BorderColor = ThemeManager.ButtonDown;
+            
+            // Ana Kontrol Butonu
+            btnToggleInput.BackColor = ThemeManager.AccentColor;
+            
+            ThemeManager.FormatControls(this.Controls);
         }
 
         private void LoadUIFromSettings()
@@ -90,11 +135,11 @@ namespace SmartApp
         {
             _waitTarget = target;
             activeBtn.Text = "Tuşa Basın... (İptal: ESC)";
+            activeBtn.BackColor = ThemeManager.ButtonDown; // Dinlerken daha koyu bir renk yap
             activeBtn.Focus();
         }
 
         // Yön tuşları veya Tab dahil her şeyi "Girdi" olarak kabul et.
-        // Bu sayede form odağı başka yere kaymaz ve tuş yutulmaz.
         private void AnyKeyButton_PreviewKeyDown(object? sender, PreviewKeyDownEventArgs e)
         {
             if (_waitTarget != KeyWaitTarget.None)
@@ -113,21 +158,23 @@ namespace SmartApp
             if (e.KeyCode == Keys.Escape)
             {
                 _waitTarget = KeyWaitTarget.None;
+                btnSetScrollKey.BackColor = ThemeManager.ContentBackground; // Rengi eski haline çevir
+                btnSetVolumeKey.BackColor = ThemeManager.ContentBackground;
                 LoadUIFromSettings();
                 return;
             }
 
             var settings = SettingsManager.Instance.Current;
 
-            // Kullanıcı Alt, Ctrl veya Shift gibi sadece değiştirici (modifier) tuşlara basarsa bile onu ana
-            // kısayol olarak kaydedebilsin diye doğrudan e.KeyCode'u alıyoruz.
             if (_waitTarget == KeyWaitTarget.Scroll)
             {
                 settings.InputScrollKey = (int)e.KeyCode;
+                btnSetScrollKey.BackColor = ThemeManager.ContentBackground; // Rengi eski haline çevir
             }
             else if (_waitTarget == KeyWaitTarget.Volume)
             {
                 settings.InputVolumeKey = (int)e.KeyCode;
+                btnSetVolumeKey.BackColor = ThemeManager.ContentBackground; // Rengi eski haline çevir
             }
 
             SettingsManager.Instance.Save();
@@ -153,7 +200,8 @@ namespace SmartApp
         {
             _isRunning = true;
             btnToggleInput.Text = "Kısayolları Durdur";
-            UpdateStatusLabel("Durum: Çalışıyor (Bekleniyor...)", Color.Green);
+            btnToggleInput.BackColor = Color.FromArgb(239, 68, 68); // Modern Kırmızı (Red-500)
+            UpdateStatusLabel("Durum: Çalışıyor (Bekleniyor...)", Color.FromArgb(16, 185, 129)); // Modern Yeşil (Emerald-500)
 
             _cancellationTokenSource = new CancellationTokenSource();
             var token = _cancellationTokenSource.Token;
@@ -163,12 +211,12 @@ namespace SmartApp
                 while (_isRunning && !token.IsCancellationRequested)
                 {
                     _inputBackend.ProcessInputTick();
-                    await Task.Delay(10, token);
+                    await Task.Delay(10, token); // 10ms CPU'yu boğmamak için ideal
                 }
             }
             catch (TaskCanceledException)
             {
-                UpdateStatusLabel("Durum: Durduruldu.", Color.Black);
+                UpdateStatusLabel("Durum: Durduruldu.", ThemeManager.TextSecondary);
             }
             catch (Exception ex)
             {
@@ -183,7 +231,8 @@ namespace SmartApp
             _cancellationTokenSource?.Cancel();
 
             btnToggleInput.Text = "Kısayolları Başlat";
-            UpdateStatusLabel("Durum: Durduruldu.", Color.Black);
+            btnToggleInput.BackColor = ThemeManager.AccentColor; // Maviye (Accent) dön
+            UpdateStatusLabel("Durum: Durduruldu.", ThemeManager.TextSecondary);
         }
 
         private void UpdateStatusLabel(string text, Color color)
