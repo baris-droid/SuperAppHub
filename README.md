@@ -87,13 +87,13 @@ SuperApp Hub utilizes global system hooks (via native C libraries) to manage sho
 
 ## 📸 Screenshots
 
-|                               Discord Manager                               |                               Eye Care                               |
-|:---------------------------------------------------------------------------:|:--------------------------------------------------------------------:|
-| <img src="screenshots/discordManager.png" width="600" alt="Discord Manager View"> | <img src="screenshots/eyeCare.png" width="600" alt="Eye Care View"> |
+|                                  Discord Manager                                  |                              Eye Care                               |
+|:---------------------------------------------------------------------------------:|:-------------------------------------------------------------------:|
+| <img src="Screenshots/discordManager.png" width="600" alt="Discord Manager View"> | <img src="Screenshots/eyeCare.png" width="600" alt="Eye Care View"> |
 
-|                             Input Management                              |                              Network & Power                              |
-|:-------------------------------------------------------------------------:|:-------------------------------------------------------------------------:|
-| <img src="screenshots/inputManager.png" width="600" alt="Input Management View"> | <img src="screenshots/networkPower.png" width="600" alt="Network & Power View"> |
+|                                 Input Management                                 |                                 Network & Power                                 |
+|:--------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------:|
+| <img src="Screenshots/inputManager.png" width="600" alt="Input Management View"> | <img src="Screenshots/networkPower.png" width="600" alt="Network & Power View"> |
 
 ## 🗺️ Roadmap
 **Current Status:** `v1.6.1 (Stable)`
