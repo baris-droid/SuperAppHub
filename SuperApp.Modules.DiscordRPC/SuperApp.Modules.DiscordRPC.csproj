@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<UseWindowsForms>true</UseWindowsForms>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\SuperApp.Core\SuperApp.Core.csproj" />
+		<None Update="NativeLibs\*.dll">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+	  <Exec Command=":: Önce ana projede Modules klasörü yoksa diye o klasörü otomatik oluşturuyoruz&#xD;&#xA;mkdir &quot;$(SolutionDir)SmartApp\bin\$(Configuration)\$(TargetFramework)\Modules&quot; 2&gt;nul&#xD;&#xA;&#xD;&#xA;:: Sonra derlenen güncel DLL dosyamızı o klasörün içine sessizce kopyalıyoruz&#xD;&#xA;copy /Y &quot;$(TargetPath)&quot; &quot;$(SolutionDir)SmartApp\bin\$(Configuration)\$(TargetFramework)\Modules\&quot;" />
+		<Exec Command="if exist &quot;$(ProjectDir)NativeLibs\*.dll&quot; copy /Y &quot;$(ProjectDir)NativeLibs\*.dll&quot; &quot;$(SolutionDir)SmartApp\bin\$(Configuration)\$(TargetFramework)\&quot;" />
+	</Target>
+
+</Project>

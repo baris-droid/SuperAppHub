@@ -1,0 +1,47 @@
+# ==========================================
+# C# / .NET STANDART DERLEME ÇIKTILARI
+# ==========================================
+# Uygulamanın ve modüllerin oluşturduğu derlenmiş klasörler
+bin/
+obj/
+
+# Derlenmiş ikili dosyalar (Binary), semboller ve önbellekler
+*.dll
+*.exe
+*.pdb
+*.cache
+*.log
+
+# ==========================================
+# IDE (VISUAL STUDIO / RIDER / VS CODE) AYARLARI
+# ==========================================
+# Geliştiriciye özel yerel ayarlar ve önbellekler
+.vs/
+.vscode/
+.idea/
+*.user
+*.suo
+*.userprefs
+*.dbmdl
+
+# ==========================================
+# HASSAS VERİLER VE YAPILANDIRMALAR (SECRETS)
+# ==========================================
+*.env
+appsettings.Development.json
+appsettings.Local.json
+secrets.json
+ayarlar.json
+
+# ==========================================
+# İŞLETİM SİSTEMİ KALINTILARI
+# ==========================================
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# ==========================================
+# İSTİSNALAR (PROJEYE ÖZEL İZİNLER)
+# ==========================================
+!NativeLibs/
+!NativeLibs/*.dll
