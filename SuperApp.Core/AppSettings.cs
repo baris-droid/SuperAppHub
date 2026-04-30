@@ -3,6 +3,10 @@
     // Verilerimizi RAM'de ve JSON dosyasında tutacak şablonumuz
     public class AppSettings
     {
+        // --- YENİ: Tema Ayarı ---
+        public bool IsDarkMode { get; set; } = false; // Varsayılan açık tema
+        
+        // --- Discord Durum ---
         public string ClientId { get; set; } = "";
         public string Details { get; set; } = "";
         public string State { get; set; } = "";
@@ -16,18 +20,18 @@
         public int ToggleKeyModifiers { get; set; } = 0; // Varsayılan: Modifikatör yok (Ctrl, Alt vb.)
 
 
-        // --- YENİ: Ağ ve Güç İzleme Ayarları ---
+        // --- Ağ ve Güç İzleme Ayarları ---
         public double NetworkThresholdKbps { get; set; } = 100.0;
         public int NetworkWaitTimeSeconds { get; set; } = 180;
         public int NetworkActionType { get; set; } = 0; // 0 = Uyku Modu (Sleep), 1 = Kapatma (Shutdown)
 
-        // --- YENİ: Gelişmiş Girdi (Input Master) Ayarları ---
+        // --- Gelişmiş Girdi (Input Master) Ayarları ---
         public int InputScrollMultiplier { get; set; } = 15;
         public int InputVolumeSensitivity { get; set; } = 20;
         public int InputScrollKey { get; set; } = 18; // Varsayılan Keys.Menu (Alt)
         public int InputVolumeKey { get; set; } = 17; // Varsayılan Keys.ControlKey (Ctrl)
 
-        // --- YENİ: Göz Sağlığı (20-20-20) Ayarları ---
+        // --- Göz Sağlığı (20-20-20) Ayarları ---
         public int EyeCareWorkMinutes { get; set; } = 20;
         public int EyeCareRestSeconds { get; set; } = 20;
         public int EyeCareNotificationLocation { get; set; } = 0; // 0: Ekran Ortası, 1: Sağ Alt Köşe

@@ -3,7 +3,8 @@ using System.Drawing;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using SuperApp.Core;
+using SuperApp.Core; 
+using SuperApp.Core.UI; 
 
 namespace SmartApp
 {
@@ -18,7 +19,11 @@ namespace SmartApp
 
         public ucEyeCare()
         {
+            ThemeManager.SetTheme(SettingsManager.Instance.Current.IsDarkMode);
             InitializeComponent();
+            ThemeManager.ThemeChanged += (s, e) => ApplyTheme();
+            ApplyTheme(); // Tema sistemini bu arayüze uyguluyoruz
+
             _eyeBackend = new EyeCareNativeWrapper();
 
             LoadUIFromSettings();
@@ -37,6 +42,39 @@ namespace SmartApp
 
             trkOpacity.Scroll -= UIElement_ValueChanged;
             trkOpacity.Scroll += UIElement_ValueChanged;
+        }
+
+        private void ApplyTheme()
+        {
+            // Ana arka plan
+            this.BackColor = ThemeManager.ContentBackground;
+
+            // Kart Panelleri
+            pnlTimingCard.BackColor = ThemeManager.SidebarBackground;
+            pnlVisualCard.BackColor = ThemeManager.SidebarBackground;
+
+            // Başlıklar
+            lblPageTitle.ForeColor = ThemeManager.TextPrimary;
+            lblTimingTitle.ForeColor = ThemeManager.TextPrimary;
+            lblVisualTitle.ForeColor = ThemeManager.TextPrimary;
+
+            // Etiketler
+            label1.ForeColor = ThemeManager.TextSecondary;
+            label2.ForeColor = ThemeManager.TextSecondary;
+            label3.ForeColor = ThemeManager.TextSecondary;
+            label4.ForeColor = ThemeManager.TextSecondary;
+
+            // Sayı seçiciler (NumericUpDown)
+            numWorkMin.BackColor = ThemeManager.ContentBackground;
+            numWorkMin.ForeColor = ThemeManager.TextPrimary;
+            numRestSec.BackColor = ThemeManager.ContentBackground;
+            numRestSec.ForeColor = ThemeManager.TextPrimary;
+
+            // ComboBox
+            cmbLocation.BackColor = ThemeManager.ContentBackground;
+            cmbLocation.ForeColor = ThemeManager.TextPrimary;
+            
+            ThemeManager.FormatControls(this.Controls);
         }
 
         private void LoadUIFromSettings()
@@ -87,7 +125,8 @@ namespace SmartApp
         {
             _isRunning = true;
             btnToggleEyeCare.Text = "Takibi Durdur";
-            UpdateStatusLabel("Durum: Takip Ediliyor", Color.Green);
+            btnToggleEyeCare.BackColor = Color.FromArgb(239, 68, 68); // Durdururken Kırmızı (Red-500)
+            UpdateStatusLabel("Durum: Takip Ediliyor", Color.FromArgb(16, 185, 129)); // Yeşil Status (Emerald-500)
 
             // Bildirim formu yoksa oluştur
             if (_notificationForm == null || _notificationForm.IsDisposed)
@@ -111,12 +150,12 @@ namespace SmartApp
                     if (state == 1) // ÇALIŞMA MODU
                     {
                         HideNotification();
-                        UpdateStatusLabel($"Odaklanıldı. Kalan: {remaining} sn", Color.Blue);
+                        UpdateStatusLabel($"Odaklanıldı. Kalan: {remaining} sn", ThemeManager.AccentColor); // Mavi (Accent) Status
                     }
                     else if (state == 2) // DİNLENME MODU
                     {
                         ShowNotification(settings.EyeCareNotificationLocation, remaining);
-                        UpdateStatusLabel("Gözler Dinlendiriliyor!", Color.DarkOrange);
+                        UpdateStatusLabel("Gözler Dinlendiriliyor!", Color.FromArgb(245, 158, 11)); // Turuncu (Amber-500) Status
                     }
 
                     await Task.Delay(500, token); // Saniyede 2 kez kontrol et
@@ -136,7 +175,8 @@ namespace SmartApp
             _eyeBackend.StopEyeCare();
 
             btnToggleEyeCare.Text = "Takibi Başlat";
-            UpdateStatusLabel("Durum: Durduruldu", Color.Black);
+            btnToggleEyeCare.BackColor = ThemeManager.AccentColor; // Maviye (Accent) dön
+            UpdateStatusLabel("Durum: Durduruldu", ThemeManager.TextSecondary); // Pasif Gri Status
             HideNotification();
         }
 
@@ -186,6 +226,5 @@ namespace SmartApp
             _cancellationTokenSource?.Dispose();
             _notificationForm?.Dispose(); // Bellek sızıntısını önlemek amacıyla
         }
-
     }
 }

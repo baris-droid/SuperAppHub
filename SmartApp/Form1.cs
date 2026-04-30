@@ -1,50 +1,57 @@
-﻿//using SmartApp.SystemCore;
-using SuperApp.Core;
-// IAppModule'ün bulunduğu yer
-
-// ModuleManager'ın bulunduğu yer
+﻿using SuperApp.Core;
+using SuperApp.Core.UI;
 
 namespace SmartApp;
 
-public class Form1 : Form
+public partial class Form1 : Form
 {
-    // Modül Yöneticimizi tanımlıyoruz 
     private readonly ModuleManager _moduleManager;
-
-    // Dinamik butonların ekrandaki Y (dikey) koordinatını takip etmek için
-    // İlk butonumuz Kontrol Paneli (Y=62) olduğu için, dinamik butonlar 106'dan başlayacak.
-    private int _currentButtonY = 106;
-
-    // Ana menü (Kontrol Paneli) her zaman sabit kalacak, bu uygulamanın kalbi
+    private int _currentButtonY = 115;
     private MainMenuControl _mainMenuControlPage = null!;
 
     // --- SİSTEM TEPSİSİ VE KAPANMA YÖNETİMİ ---
     private NotifyIcon _trayIcon = null!;
     private ContextMenuStrip _trayMenu = null!;
-    private Button btnOpenMainMenu;
-    private Label label1;
-
-    private Label label2;
-    private Panel pnlContent;
-    private Panel pnlNavIndicator;
-
-
-    // --- ARAYÜZ OLUŞTURUCU (Designer Kodları) ---
-    private Panel pnlSidebar;
 
     public Form1()
     {
+        ThemeManager.SetTheme(SettingsManager.Instance.Current.IsDarkMode);
         InitializeComponent();
+        ThemeManager.ThemeChanged += (s, e) => ApplyTheme();
+        ApplyTheme();
 
-        // 1. Modül Yöneticisini ayağa kaldır
         _moduleManager = new ModuleManager();
 
-        // 2. Ana bileşenleri hazırla
         SetupTrayIcon();
         AnaMenuyuHazirla();
-
-        // 3. Klasördeki modülleri bul ve butonlarını oluştur
         ModulleriYukleVeArayuzuOlustur();
+    }
+
+    private void ApplyTheme()
+    {
+        // Ana arka plan ve paneller
+        BackColor = ThemeManager.ContentBackground;
+        pnlSidebar.BackColor = ThemeManager.SidebarBackground;
+        pnlContent.BackColor = ThemeManager.ContentBackground;
+
+        lblTitle.ForeColor = ThemeManager.TextPrimary;
+        lblVersion.ForeColor = ThemeManager.TextSecondary;
+        pnlNavIndicator.BackColor = ThemeManager.AccentColor;
+
+        // YENİ: Sol menüdeki TÜM butonları (Kontrol Paneli + Dinamik Modüller) bul ve güncelle
+        foreach (Control ctrl in pnlSidebar.Controls)
+            if (ctrl is Button btn)
+            {
+                // Üzerine gelme (Hover) ve tıklama (Down) renklerini karanlık temaya uygun hale getir
+                btn.FlatAppearance.MouseOverBackColor = ThemeManager.ButtonHover;
+                btn.FlatAppearance.MouseDownBackColor = ThemeManager.ButtonDown;
+
+                // Butonun o an seçili olan sekme olup olmadığını, yanındaki mavi çubuğun hizasından anlıyoruz
+                var isActive = pnlNavIndicator.Top == btn.Top + 5;
+
+                // Eğer aktif sekme ise rengini Vurgu Rengi (Mavi) yap, değilse Pasif Yazı Rengi (Gri) yap
+                btn.ForeColor = isActive ? ThemeManager.AccentColor : ThemeManager.TextSecondary;
+            }
     }
 
     private void AnaMenuyuHazirla()
@@ -52,97 +59,89 @@ public class Form1 : Form
         _mainMenuControlPage = new MainMenuControl { Dock = DockStyle.Fill };
         pnlContent.Controls.Add(_mainMenuControlPage);
 
-        // Form ilk açıldığında doğrudan Ana Menüyü göster
         NavigasyonYap(_mainMenuControlPage, btnOpenMainMenu);
     }
 
     private void ModulleriYukleVeArayuzuOlustur()
     {
-        // Modüllerin bulunacağı klasör yolu (Uygulamanın çalıştığı yerdeki 'Modules' klasörü)
         var modulesPath = Path.Combine(Application.StartupPath, "Modules");
 
-        // DLL'leri tarar ve RAM'e yükler
+        if (!Directory.Exists(modulesPath))
+        {
+            Directory.CreateDirectory(modulesPath);
+            return;
+        }
+
         _moduleManager.LoadModules(modulesPath);
 
-        // Yüklenen her bir modül için sol menüye dinamik buton ekle
         foreach (var module in _moduleManager.LoadedModules) DinamikButonOlustur(module);
     }
 
     private void DinamikButonOlustur(IAppModule module)
     {
-        // 1. Butonun fiziksel özelliklerini mevcut tasarımına uygun olarak yarat
         var btnModule = new Button
         {
-            Text = module.ModuleName, // Modülün IAppModule sözleşmesindeki adı
-            Size = new Size(121, 38),
-            Location = new Point(12, _currentButtonY),
+            Text = module.ModuleName,
+            Size = new Size(238, 40),
+            Location = new Point(10, _currentButtonY),
             Cursor = Cursors.Hand,
             FlatStyle = FlatStyle.Flat,
-            Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 162),
-            ForeColor = Color.FromArgb(107, 114, 128) // Varsayılan pasif gri renk
+            Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 162),
+            ForeColor = ThemeManager.TextSecondary,
+            TextAlign = ContentAlignment.MiddleLeft,
+            Padding = new Padding(15, 0, 0, 0)
         };
 
-        // Kenarlıkları ve tıklama efektlerini ayarla
         btnModule.FlatAppearance.BorderSize = 0;
-        btnModule.FlatAppearance.MouseOverBackColor = Color.FromArgb(243, 244, 246);
-        btnModule.FlatAppearance.MouseDownBackColor = Color.FromArgb(229, 231, 235);
+        btnModule.FlatAppearance.MouseOverBackColor = ThemeManager.ButtonHover;
+        btnModule.FlatAppearance.MouseDownBackColor = ThemeManager.ButtonDown;
 
-        // 2. Modülün Arayüzünü (UserControl) RAM'de hazırla ama henüz gösterme
         var moduleUI = module.GetMainInterface();
         moduleUI.Dock = DockStyle.Fill;
-        moduleUI.Visible = false; // Tıklanana kadar gizli kalacak
+        moduleUI.Visible = false;
+
         pnlContent.Controls.Add(moduleUI);
 
-        // 3. Olay Yönlendirmesi
-        // Butona tıklandığında hangi arayüzün açılacağını kodla birbirine bağlıyoruz
         btnModule.Click += (sender, e) => NavigasyonYap(moduleUI, btnModule);
 
-        // 4. Butonu sol panele ekle
         pnlSidebar.Controls.Add(btnModule);
 
-        // Bir sonraki buton için Y eksenini aşağı kaydır (38 buton boyu + 6 boşluk = 44)
-        _currentButtonY += 44;
+        _currentButtonY += 45;
     }
 
-    // DRY (Don't Repeat Yourself) Prensibi: Tek bir navigasyon metodu her şeyi çözer
     private void NavigasyonYap(UserControl aktifSayfa, Button aktifButon)
     {
-        // 1. Modül Değişimi: Tüm panelleri gizle, sadece isteneni öne çıkar
+        // Yalnızca ekranda görünen modülü gizleyerek gereksiz CPU kullanımını (overhead) önlüyoruz
         foreach (Control ctrl in pnlContent.Controls)
-            if (ctrl is UserControl uc)
+            if (ctrl is UserControl uc && uc.Visible)
                 uc.Hide();
 
         aktifSayfa.Show();
         aktifSayfa.BringToFront();
 
-        // 2. UI Güncellemesi: Mavi aktiflik çizgisini tıklanan butona hizala
-        pnlNavIndicator.Height = aktifButon.Height;
-        pnlNavIndicator.Top = aktifButon.Top;
-        pnlNavIndicator.Left = aktifButon.Left;
+        pnlNavIndicator.Height = aktifButon.Height - 10;
+        pnlNavIndicator.Top = aktifButon.Top + 5;
+        pnlNavIndicator.Left = 0;
         pnlNavIndicator.BringToFront();
 
-        // 3. Renk Güncellemesi
         ResetButtonColors();
-        aktifButon.ForeColor = Color.FromArgb(37, 99, 235); // Aktif mavi
+        aktifButon.ForeColor = ThemeManager.AccentColor;
+        aktifButon.Font = new Font("Segoe UI", 10F, FontStyle.Bold, GraphicsUnit.Point, 162);
     }
 
     private void ResetButtonColors()
     {
-        var passiveColor = Color.FromArgb(107, 114, 128);
-
-        // pnlSidebar içindeki tüm butonları bul ve renklerini sıfırla
         foreach (Control ctrl in pnlSidebar.Controls)
             if (ctrl is Button btn)
-                btn.ForeColor = passiveColor;
+            {
+                btn.ForeColor = ThemeManager.TextSecondary;
+                btn.Font = new Font("Segoe UI Semibold", 9.75F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            }
     }
 
-    // Form1'in (Designer) içindeki tek fiziksel buton tıklaması (Ana Menü)
     private void btnOpenMainMenu_Click(object? sender, EventArgs e)
     {
-        if (sender is Button btn)
-        {
-            NavigasyonYap(_mainMenuControlPage, btn);
-        }
+        if (sender is Button btn) NavigasyonYap(_mainMenuControlPage, btn);
     }
 
     private void SetupTrayIcon()
@@ -171,7 +170,6 @@ public class Form1 : Form
 
     private void ForceExit()
     {
-        // Çıkış yaparken Modül Yöneticisine tüm modülleri güvenle kapatma
         _moduleManager.UnloadAll();
         _trayIcon.Dispose();
         Environment.Exit(0);
@@ -179,7 +177,6 @@ public class Form1 : Form
 
     protected override void OnFormClosing(FormClosingEventArgs e)
     {
-        // SettingsManager üzerinden bellekteki ayarı okuyoruz
         if (e.CloseReason == CloseReason.UserClosing && SettingsManager.Instance.Current.MinimizeToTray)
         {
             e.Cancel = true;
@@ -194,99 +191,5 @@ public class Form1 : Form
             _trayIcon.Dispose();
             base.OnFormClosing(e);
         }
-    }
-
-    /// <summary>
-    ///     Required method for Designer support - do not modify
-    ///     the contents of this method with the code editor.
-    /// </summary>
-    private void InitializeComponent()
-    {
-        pnlSidebar = new Panel();
-        label2 = new Label();
-        pnlNavIndicator = new Panel();
-        label1 = new Label();
-        btnOpenMainMenu = new Button();
-        pnlContent = new Panel();
-        pnlSidebar.SuspendLayout();
-        SuspendLayout();
-        // 
-        // pnlSidebar
-        // 
-        pnlSidebar.BackColor = Color.White;
-        pnlSidebar.Controls.Add(label2);
-        pnlSidebar.Controls.Add(pnlNavIndicator);
-        pnlSidebar.Controls.Add(label1);
-        pnlSidebar.Controls.Add(btnOpenMainMenu);
-        pnlSidebar.Dock = DockStyle.Left;
-        pnlSidebar.Location = new Point(0, 0);
-        pnlSidebar.Name = "pnlSidebar";
-        pnlSidebar.Size = new Size(193, 453);
-        pnlSidebar.TabIndex = 0;
-        // 
-        // label2
-        // 
-        label2.Location = new Point(12, 421);
-        label2.Name = "label2";
-        label2.Size = new Size(100, 23);
-        label2.TabIndex = 7;
-        label2.Text = "v1.6.1";
-        // 
-        // pnlNavIndicator
-        // 
-        pnlNavIndicator.BackColor = Color.FromArgb(37, 99, 235);
-        pnlNavIndicator.Location = new Point(0, 62);
-        pnlNavIndicator.Name = "pnlNavIndicator";
-        pnlNavIndicator.Size = new Size(4, 38);
-        pnlNavIndicator.TabIndex = 6;
-        // 
-        // label1
-        // 
-        label1.AutoSize = true;
-        label1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 162);
-        label1.ForeColor = Color.FromArgb(31, 41, 55);
-        label1.Location = new Point(12, 13);
-        label1.Name = "label1";
-        label1.Size = new Size(161, 40);
-        label1.TabIndex = 5;
-        label1.Text = "Super App";
-        // 
-        // btnOpenMainMenu
-        // 
-        btnOpenMainMenu.Cursor = Cursors.Hand;
-        btnOpenMainMenu.FlatAppearance.BorderSize = 0;
-        btnOpenMainMenu.FlatAppearance.MouseDownBackColor = Color.FromArgb(229, 231, 235);
-        btnOpenMainMenu.FlatAppearance.MouseOverBackColor = Color.FromArgb(243, 244, 246);
-        btnOpenMainMenu.FlatStyle = FlatStyle.Flat;
-        btnOpenMainMenu.Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
-        btnOpenMainMenu.ForeColor = Color.FromArgb(107, 114, 128);
-        btnOpenMainMenu.Location = new Point(12, 62);
-        btnOpenMainMenu.Name = "btnOpenMainMenu";
-        btnOpenMainMenu.Size = new Size(121, 38);
-        btnOpenMainMenu.TabIndex = 2;
-        btnOpenMainMenu.Text = "Kontrol Paneli";
-        btnOpenMainMenu.UseVisualStyleBackColor = true;
-        btnOpenMainMenu.Click += btnOpenMainMenu_Click;
-        // 
-        // pnlContent
-        // 
-        pnlContent.BackColor = Color.FromArgb(243, 244, 246);
-        pnlContent.Dock = DockStyle.Fill;
-        pnlContent.Location = new Point(193, 0);
-        pnlContent.Name = "pnlContent";
-        pnlContent.Size = new Size(744, 453);
-        pnlContent.TabIndex = 1;
-        // 
-        // Form1
-        // 
-        BackColor = Color.FromArgb(243, 244, 246);
-        ClientSize = new Size(937, 453);
-        Controls.Add(pnlContent);
-        Controls.Add(pnlSidebar);
-        Font = new Font("Segoe UI", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 162);
-        ShowIcon = false;
-        pnlSidebar.ResumeLayout(false);
-        pnlSidebar.PerformLayout();
-        ResumeLayout(false);
     }
 }

@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 using SuperApp.Core;
+using SuperApp.Core.UI; // ThemeManager için
 
 namespace SmartApp
 {
@@ -11,19 +12,47 @@ namespace SmartApp
 
         public ucDiscordRPC()
         {
+            ThemeManager.SetTheme(SettingsManager.Instance.Current.IsDarkMode);
             InitializeComponent();
-
-            // Olayları koda güvenli bir şekilde bağlıyoruz. 
-            // Designer'ın bunları unutma ihtimalini tamamen ortadan kaldırma amacıyla
+            ThemeManager.ThemeChanged += (s, e) => ApplyTheme();
+            ApplyTheme(); // Tema sistemimizi bu sayfaya da uyguluyoruz
+            
             btnConnect.Click += btnConnect_Click;
             btnUpdate.Click += btnUpdate_Click;
             btnDisconnect.Click += btnDisconnect_Click;
-            // chkMinimizeToTray.CheckedChanged += chkMinimizeToTray_CheckedChanged;
 
             _discordBackend = new DiscordNativeWrapper();
 
             // Arayüzü yüklerken doğrudan SettingsManager üzerinden bellekteki güncel kopyayı okuyoruz
             LoadUIFromSettings();
+        }
+        
+        private void ApplyTheme()
+        {
+            // Arka plan ve kart renkleri
+            this.BackColor = ThemeManager.ContentBackground;
+            pnlCard.BackColor = ThemeManager.SidebarBackground;
+
+            // Başlıklar ve Etiketler
+            lblTitle.ForeColor = ThemeManager.TextPrimary;
+            lblClientId.ForeColor = ThemeManager.TextPrimary;
+            lblImageLink.ForeColor = ThemeManager.TextPrimary;
+            lblDetails.ForeColor = ThemeManager.TextPrimary;
+            lblState.ForeColor = ThemeManager.TextPrimary;
+            
+            // Bilgi yazısı
+            label1.ForeColor = ThemeManager.TextSecondary;
+
+            // Metin kutularının (TextBox) temaya uyumu
+            var textboxes = new[] { txtClientId, txtImageLink, txtDetails, txtState };
+            foreach (var txt in textboxes)
+            {
+                txt.BackColor = ThemeManager.ContentBackground; // Kutu içini arkaplanla aynı yap
+                txt.ForeColor = ThemeManager.TextPrimary;
+                txt.BorderStyle = BorderStyle.FixedSingle;
+            }
+            
+            ThemeManager.FormatControls(this.Controls);
         }
 
         // --- ARAYÜZ YÜKLEME ---
@@ -36,7 +65,6 @@ namespace SmartApp
             txtDetails.Text = settings.Details;
             txtState.Text = settings.State;
             txtImageLink.Text = settings.ImageLink;
-            // chkMinimizeToTray.Checked = settings.MinimizeToTray;
         }
 
         // --- BUTON OLAYLARI ---
@@ -54,7 +82,7 @@ namespace SmartApp
             if (_discordBackend.Connect(clientId))
             {
                 lblStatus.Text = "Durum: Bağlanıldı!";
-                lblStatus.ForeColor = Color.Green;
+                lblStatus.ForeColor = Color.FromArgb(16, 185, 129); // Modern Yeşil (Tailwind Emerald-500)
 
                 // Bağlantı başarılıysa arayüz kontrollerini duruma uygun hale getir
                 btnConnect.Enabled = false;
@@ -86,20 +114,13 @@ namespace SmartApp
             _discordBackend.Disconnect();
 
             lblStatus.Text = "Durum: Bağlantı Kesildi.";
-            lblStatus.ForeColor = Color.Red;
+            lblStatus.ForeColor = Color.FromArgb(239, 68, 68); // Modern Kırmızı (Tailwind Red-500)
 
             // Arayüz kontrollerini başlangıç durumuna (bağlantıya hazır) geri getir
             btnConnect.Enabled = true;
             txtClientId.Enabled = true;
             btnDisconnect.Enabled = false;
         }
-
-        /*
-        private void chkMinimizeToTray_CheckedChanged(object? sender, EventArgs e)
-        {
-            UpdateAndSaveSettings();
-        }
-        */
 
         // --- ORTAK KAYIT METODU (DRY Prensibi) ---
         // Her işlemde aynı atamaları yazmamak için ortak bir metot oluşturduk.
@@ -112,7 +133,6 @@ namespace SmartApp
             settings.Details = txtDetails.Text;
             settings.State = txtState.Text;
             settings.ImageLink = txtImageLink.Text;
-            // settings.MinimizeToTray = chkMinimizeToTray.Checked;
 
             // Modeli diske yazdır
             SettingsManager.Instance.Save();

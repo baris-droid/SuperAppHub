@@ -96,7 +96,7 @@ SuperApp Hub utilizes global system hooks (via native C libraries) to manage sho
 | <img src="Screenshots/inputManager.png" width="600" alt="Input Management View"> | <img src="Screenshots/networkPower.png" width="600" alt="Network & Power View"> |
 
 ## 🗺️ Roadmap
-**Current Status:** `v1.6.1 (Stable)`
+**Current Status:** `v1.7.0-beta`
 
 The SuperApp Hub is under active development. Here are the planned features and milestones:
 

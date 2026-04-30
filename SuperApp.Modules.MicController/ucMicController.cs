@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using SuperApp.Core;
+using SuperApp.Core;    
+using SuperApp.Core.UI; 
 
 namespace SmartApp
 {
@@ -55,10 +57,15 @@ namespace SmartApp
 
         public ucMicController()
         {
+            ThemeManager.SetTheme(SettingsManager.Instance.Current.IsDarkMode);
             InitializeComponent();
+            ThemeManager.ThemeChanged += (s, e) => ApplyTheme();
+            ApplyTheme(); // Tema sistemini uyguluyoruz
+
             _micBackend = new MicNativeWrapper();
 
             chkGlobalMute.Checked = _micBackend.IsMuted();
+            UpdateMicStatusIndicator(); // İlk duruma göre etiketi renklendir
 
             _hotkeyListener = new HotkeyListener();
             _hotkeyListener.OnHotkeyPressed += ToggleMicrophone;
@@ -74,6 +81,56 @@ namespace SmartApp
             LoadSettingsFromManager();
         }
 
+        private void ApplyTheme()
+        {
+            // Ana arka plan
+            this.BackColor = ThemeManager.ContentBackground;
+
+            // Kart Panelleri
+            pnlActiveCard.BackColor = ThemeManager.SidebarBackground;
+            pnlSoonCard.BackColor = ThemeManager.SidebarBackground;
+
+            // Başlıklar
+            lblTitle.ForeColor = ThemeManager.TextPrimary;
+            lblActiveCardTitle.ForeColor = ThemeManager.TextPrimary;
+            
+            // Yakında kartının başlığı ve içeriği kasıtlı olarak pasif renklerde
+            lblSoonCardTitle.ForeColor = ThemeManager.TextSecondary;
+            chkEnablePTT.ForeColor = ThemeManager.TextSecondary;
+            btnSetHotkey.ForeColor = ThemeManager.TextSecondary;
+            btnSetHotkey.BackColor = ThemeManager.ButtonHover;
+
+            // Yakında (Soon) Rozeti Tasarımı (Altın/Turuncu vurgu)
+            lblSoonBadge.BackColor = Color.FromArgb(254, 243, 199);
+            lblSoonBadge.ForeColor = Color.FromArgb(217, 119, 6);
+
+            // Aktif Kart Etiketleri
+            chkGlobalMute.ForeColor = ThemeManager.TextSecondary;
+            chkEnableToggle.ForeColor = ThemeManager.TextSecondary;
+
+            // Tuş Atama Butonu
+            btnSetToggleKey.BackColor = ThemeManager.ContentBackground;
+            btnSetToggleKey.ForeColor = ThemeManager.TextPrimary;
+            btnSetToggleKey.FlatAppearance.BorderColor = ThemeManager.ButtonDown;
+            
+            ThemeManager.FormatControls(this.Controls);
+        }
+
+        // Mikrofon durumuna göre etiket metnini ve rengini güncelleyen yardımcı metod
+        private void UpdateMicStatusIndicator()
+        {
+            if (chkGlobalMute.Checked)
+            {
+                lblMicStatusIndicator.Text = "Durum: Susturuldu";
+                lblMicStatusIndicator.ForeColor = Color.FromArgb(239, 68, 68); // Kırmızı (Red-500)
+            }
+            else
+            {
+                lblMicStatusIndicator.Text = "Durum: Aktif";
+                lblMicStatusIndicator.ForeColor = Color.FromArgb(16, 185, 129); // Yeşil (Emerald-500)
+            }
+        }
+
         // --- KISAYOL TETİKLENDİĞİNDE ÇALIŞACAK METOD ---
         private void ToggleMicrophone()
         {
@@ -82,7 +139,11 @@ namespace SmartApp
 
             if (this.IsHandleCreated && !this.IsDisposed)
             {
-                this.BeginInvoke(new Action(() => { chkGlobalMute.Checked = newMuteState; }));
+                this.BeginInvoke(new Action(() => 
+                { 
+                    chkGlobalMute.Checked = newMuteState; 
+                    UpdateMicStatusIndicator();
+                }));
             }
         }
 
@@ -150,6 +211,7 @@ namespace SmartApp
         {
             _isWaitingForKey = true;
             btnSetToggleKey.Text = "Tuşa Basın... (İptal için ESC)";
+            btnSetToggleKey.BackColor = ThemeManager.ButtonDown; // Dinlerken daha koyu bir renk yap
 
             UnregisterHotKey(_hotkeyListener.Handle, HOTKEY_ID);
             btnSetToggleKey.Focus();
@@ -183,6 +245,7 @@ namespace SmartApp
             if (e.Alt) _currentModifiers |= 0x0001;
 
             _isWaitingForKey = false;
+            btnSetToggleKey.BackColor = ThemeManager.ContentBackground; // Rengi eski haline çevir
             UpdateHotkeyButtonText();
 
             if (chkEnableToggle.Checked) RegisterGlobalHotkey();
@@ -194,6 +257,7 @@ namespace SmartApp
         private void CancelKeyWaiting()
         {
             _isWaitingForKey = false;
+            btnSetToggleKey.BackColor = ThemeManager.ContentBackground; // Rengi eski haline çevir
             UpdateHotkeyButtonText();
             if (chkEnableToggle.Checked) RegisterGlobalHotkey();
         }
@@ -221,6 +285,8 @@ namespace SmartApp
 
         private void chkGlobalMute_CheckedChanged(object? sender, EventArgs e)
         {
+            UpdateMicStatusIndicator(); // Yazı ve rengi güncelle
+            
             if (chkGlobalMute.Focused)
             {
                 _micBackend.SetMute(chkGlobalMute.Checked);
@@ -232,7 +298,7 @@ namespace SmartApp
             SaveSettingsToManager(); // Kapanırken son bir kayıt al
             UnregisterHotKey(_hotkeyListener.Handle, HOTKEY_ID);
             _hotkeyListener.Dispose();
-            _micBackend.SetMute(false);
+            _micBackend.SetMute(false); // Uygulama kapanırken mikrofonu kesin aç
         }
     }
 }
