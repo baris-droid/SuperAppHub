@@ -87,13 +87,13 @@ SuperApp Hub utilizes global system hooks (via native C libraries) to manage sho
 
 ## 📸 Screenshots
 
-| Discord Manager | Eye Care |
-|:---:|:---:|
-| ![Discord](Link) | ![Eye Care](Link) |
+|              Discord Manager               |               Eye Care               |
+|:------------------------------------------:|:------------------------------------:|
+| ![Discord](screenshots/discordManager.png) | ![Eye Care](screenshots/eyeCare.png) |
 
-| Input Management | Network & Power |
-|:----------------:|:---:|
-|  ![Input](Link)  | ![Network](Link) |
+|            Input Management            |             Network & Power              |
+|:--------------------------------------:|:----------------------------------------:|
+| ![Input](screenshots/inputManager.png) | ![Network](screenshots/networkPower.png) |
 
 ## 🗺️ Roadmap
 **Current Status:** `v1.6.1 (Stable)`
