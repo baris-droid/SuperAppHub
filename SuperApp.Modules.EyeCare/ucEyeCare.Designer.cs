@@ -15,231 +15,232 @@
 
         #region Bileşen Tasarımcısı üretimi kod
 
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
         private void InitializeComponent()
         {
-            this.lblPageTitle = new System.Windows.Forms.Label();
-            this.pnlTimingCard = new System.Windows.Forms.Panel();
-            this.lblTimingTitle = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.numWorkMin = new System.Windows.Forms.NumericUpDown();
-            this.label2 = new System.Windows.Forms.Label();
-            this.numRestSec = new System.Windows.Forms.NumericUpDown();
-            this.pnlVisualCard = new System.Windows.Forms.Panel();
-            this.lblVisualTitle = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.cmbLocation = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.trkOpacity = new System.Windows.Forms.TrackBar();
-            this.btnToggleEyeCare = new System.Windows.Forms.Button();
-            this.lblStatus = new System.Windows.Forms.Label();
-            
-            this.pnlTimingCard.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numWorkMin)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numRestSec)).BeginInit();
-            this.pnlVisualCard.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trkOpacity)).BeginInit();
-            this.SuspendLayout();
-            
+            lblPageTitle = new System.Windows.Forms.Label();
+            pnlTimingCard = new System.Windows.Forms.Panel();
+            lblTimingTitle = new System.Windows.Forms.Label();
+            label1 = new System.Windows.Forms.Label();
+            numWorkMin = new System.Windows.Forms.NumericUpDown();
+            label2 = new System.Windows.Forms.Label();
+            numRestSec = new System.Windows.Forms.NumericUpDown();
+            pnlVisualCard = new System.Windows.Forms.Panel();
+            lblVisualTitle = new System.Windows.Forms.Label();
+            label3 = new System.Windows.Forms.Label();
+            cmbLocation = new System.Windows.Forms.ComboBox();
+            label4 = new System.Windows.Forms.Label();
+            trkOpacity = new System.Windows.Forms.TrackBar();
+            btnToggleEyeCare = new System.Windows.Forms.Button();
+            lblStatus = new System.Windows.Forms.Label();
+            pnlTimingCard.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numWorkMin).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numRestSec).BeginInit();
+            pnlVisualCard.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)trkOpacity).BeginInit();
+            SuspendLayout();
             // 
             // lblPageTitle
             // 
-            this.lblPageTitle.AutoSize = true;
-            this.lblPageTitle.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 162);
-            this.lblPageTitle.Location = new System.Drawing.Point(20, 20);
-            this.lblPageTitle.Name = "lblPageTitle";
-            this.lblPageTitle.Size = new System.Drawing.Size(262, 32);
-            this.lblPageTitle.TabIndex = 4;
-            this.lblPageTitle.Text = "Göz Sağlığı (20-20-20)";
-            
+            lblPageTitle.AutoSize = true;
+            lblPageTitle.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)162));
+            lblPageTitle.Location = new System.Drawing.Point(31, 33);
+            lblPageTitle.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            lblPageTitle.Name = "lblPageTitle";
+            lblPageTitle.Size = new System.Drawing.Size(400, 48);
+            lblPageTitle.TabIndex = 4;
+            lblPageTitle.Text = "Göz Sağlığı (20-20-20)";
             // 
             // pnlTimingCard
             // 
-            this.pnlTimingCard.Controls.Add(this.lblTimingTitle);
-            this.pnlTimingCard.Controls.Add(this.label1);
-            this.pnlTimingCard.Controls.Add(this.numWorkMin);
-            this.pnlTimingCard.Controls.Add(this.label2);
-            this.pnlTimingCard.Controls.Add(this.numRestSec);
-            this.pnlTimingCard.Location = new System.Drawing.Point(25, 80);
-            this.pnlTimingCard.Name = "pnlTimingCard";
-            this.pnlTimingCard.Size = new System.Drawing.Size(300, 220);
-            this.pnlTimingCard.TabIndex = 3;
-            
+            pnlTimingCard.Controls.Add(lblTimingTitle);
+            pnlTimingCard.Controls.Add(label1);
+            pnlTimingCard.Controls.Add(numWorkMin);
+            pnlTimingCard.Controls.Add(label2);
+            pnlTimingCard.Controls.Add(numRestSec);
+            pnlTimingCard.Location = new System.Drawing.Point(39, 132);
+            pnlTimingCard.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            pnlTimingCard.Name = "pnlTimingCard";
+            pnlTimingCard.Size = new System.Drawing.Size(471, 362);
+            pnlTimingCard.TabIndex = 3;
             // 
             // lblTimingTitle
             // 
-            this.lblTimingTitle.AutoSize = true;
-            this.lblTimingTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 162);
-            this.lblTimingTitle.Location = new System.Drawing.Point(20, 15);
-            this.lblTimingTitle.Name = "lblTimingTitle";
-            this.lblTimingTitle.Size = new System.Drawing.Size(87, 20);
-            this.lblTimingTitle.TabIndex = 0;
-            this.lblTimingTitle.Text = "Zamanlama";
-            
+            lblTimingTitle.AutoSize = true;
+            lblTimingTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)162));
+            lblTimingTitle.Location = new System.Drawing.Point(31, 25);
+            lblTimingTitle.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            lblTimingTitle.Name = "lblTimingTitle";
+            lblTimingTitle.Size = new System.Drawing.Size(135, 31);
+            lblTimingTitle.TabIndex = 0;
+            lblTimingTitle.Text = "Zamanlama";
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162);
-            this.label1.Location = new System.Drawing.Point(20, 55);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(142, 17);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Çalışma Süresi (Dakika)";
-            
+            label1.AutoSize = true;
+            label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)162));
+            label1.Location = new System.Drawing.Point(31, 91);
+            label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            label1.Name = "label1";
+            label1.Size = new System.Drawing.Size(212, 28);
+            label1.TabIndex = 1;
+            label1.Text = "Çalışma Süresi (Dakika)";
             // 
             // numWorkMin
             // 
-            this.numWorkMin.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162);
-            this.numWorkMin.Location = new System.Drawing.Point(20, 80);
-            this.numWorkMin.Maximum = new decimal(new int[] { 120, 0, 0, 0 });
-            this.numWorkMin.Name = "numWorkMin";
-            this.numWorkMin.Size = new System.Drawing.Size(260, 27);
-            this.numWorkMin.TabIndex = 2;
-            this.numWorkMin.Value = new decimal(new int[] { 20, 0, 0, 0 });
-            
+            numWorkMin.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)162));
+            numWorkMin.Location = new System.Drawing.Point(31, 132);
+            numWorkMin.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            numWorkMin.Maximum = new decimal(new int[] { 120, 0, 0, 0 });
+            numWorkMin.Name = "numWorkMin";
+            numWorkMin.Size = new System.Drawing.Size(409, 37);
+            numWorkMin.TabIndex = 2;
+            numWorkMin.Value = new decimal(new int[] { 20, 0, 0, 0 });
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162);
-            this.label2.Location = new System.Drawing.Point(20, 130);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(155, 17);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Dinlenme Süresi (Saniye)";
-            
+            label2.AutoSize = true;
+            label2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)162));
+            label2.Location = new System.Drawing.Point(31, 214);
+            label2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            label2.Name = "label2";
+            label2.Size = new System.Drawing.Size(226, 28);
+            label2.TabIndex = 3;
+            label2.Text = "Dinlenme Süresi (Saniye)";
             // 
             // numRestSec
             // 
-            this.numRestSec.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162);
-            this.numRestSec.Location = new System.Drawing.Point(20, 155);
-            this.numRestSec.Maximum = new decimal(new int[] { 300, 0, 0, 0 });
-            this.numRestSec.Minimum = new decimal(new int[] { 5, 0, 0, 0 });
-            this.numRestSec.Name = "numRestSec";
-            this.numRestSec.Size = new System.Drawing.Size(260, 27);
-            this.numRestSec.TabIndex = 4;
-            this.numRestSec.Value = new decimal(new int[] { 20, 0, 0, 0 });
-            
+            numRestSec.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)162));
+            numRestSec.Location = new System.Drawing.Point(31, 255);
+            numRestSec.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            numRestSec.Maximum = new decimal(new int[] { 300, 0, 0, 0 });
+            numRestSec.Minimum = new decimal(new int[] { 5, 0, 0, 0 });
+            numRestSec.Name = "numRestSec";
+            numRestSec.Size = new System.Drawing.Size(409, 37);
+            numRestSec.TabIndex = 4;
+            numRestSec.Value = new decimal(new int[] { 20, 0, 0, 0 });
             // 
             // pnlVisualCard
             // 
-            this.pnlVisualCard.Controls.Add(this.lblVisualTitle);
-            this.pnlVisualCard.Controls.Add(this.label3);
-            this.pnlVisualCard.Controls.Add(this.cmbLocation);
-            this.pnlVisualCard.Controls.Add(this.label4);
-            this.pnlVisualCard.Controls.Add(this.trkOpacity);
-            this.pnlVisualCard.Location = new System.Drawing.Point(340, 80);
-            this.pnlVisualCard.Name = "pnlVisualCard";
-            this.pnlVisualCard.Size = new System.Drawing.Size(300, 220);
-            this.pnlVisualCard.TabIndex = 2;
-            
+            pnlVisualCard.Controls.Add(lblVisualTitle);
+            pnlVisualCard.Controls.Add(label3);
+            pnlVisualCard.Controls.Add(cmbLocation);
+            pnlVisualCard.Controls.Add(label4);
+            pnlVisualCard.Controls.Add(trkOpacity);
+            pnlVisualCard.Location = new System.Drawing.Point(534, 132);
+            pnlVisualCard.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            pnlVisualCard.Name = "pnlVisualCard";
+            pnlVisualCard.Size = new System.Drawing.Size(471, 362);
+            pnlVisualCard.TabIndex = 2;
             // 
             // lblVisualTitle
             // 
-            this.lblVisualTitle.AutoSize = true;
-            this.lblVisualTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 162);
-            this.lblVisualTitle.Location = new System.Drawing.Point(20, 15);
-            this.lblVisualTitle.Name = "lblVisualTitle";
-            this.lblVisualTitle.Size = new System.Drawing.Size(137, 20);
-            this.lblVisualTitle.TabIndex = 0;
-            this.lblVisualTitle.Text = "Bildirim Görünümü";
-            
+            lblVisualTitle.AutoSize = true;
+            lblVisualTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)162));
+            lblVisualTitle.Location = new System.Drawing.Point(31, 25);
+            lblVisualTitle.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            lblVisualTitle.Name = "lblVisualTitle";
+            lblVisualTitle.Size = new System.Drawing.Size(212, 31);
+            lblVisualTitle.TabIndex = 0;
+            lblVisualTitle.Text = "Bildirim Görünümü";
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162);
-            this.label3.Location = new System.Drawing.Point(20, 55);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(103, 17);
-            this.label3.TabIndex = 1;
-            this.label3.Text = "Bildirim Konumu";
-            
+            label3.AutoSize = true;
+            label3.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)162));
+            label3.Location = new System.Drawing.Point(31, 91);
+            label3.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            label3.Name = "label3";
+            label3.Size = new System.Drawing.Size(158, 28);
+            label3.TabIndex = 1;
+            label3.Text = "Bildirim Konumu";
             // 
             // cmbLocation
             // 
-            this.cmbLocation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbLocation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cmbLocation.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162);
-            this.cmbLocation.Items.AddRange(new object[] { "Ekranın Ortası", "Sağ Alt Köşe" });
-            this.cmbLocation.Location = new System.Drawing.Point(20, 80);
-            this.cmbLocation.Name = "cmbLocation";
-            this.cmbLocation.Size = new System.Drawing.Size(260, 28);
-            this.cmbLocation.TabIndex = 2;
-            
+            cmbLocation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            cmbLocation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            cmbLocation.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)162));
+            cmbLocation.Items.AddRange(new object[] { "Ekranın Ortası", "Sağ Alt Köşe" });
+            cmbLocation.Location = new System.Drawing.Point(31, 132);
+            cmbLocation.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            cmbLocation.Name = "cmbLocation";
+            cmbLocation.Size = new System.Drawing.Size(406, 39);
+            cmbLocation.TabIndex = 2;
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162);
-            this.label4.Location = new System.Drawing.Point(20, 130);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(131, 17);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Arka Plan Matlığı (%)";
-            
+            label4.AutoSize = true;
+            label4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)162));
+            label4.Location = new System.Drawing.Point(31, 214);
+            label4.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            label4.Name = "label4";
+            label4.Size = new System.Drawing.Size(194, 28);
+            label4.TabIndex = 3;
+            label4.Text = "Arka Plan Matlığı (%)";
             // 
             // trkOpacity
             // 
-            this.trkOpacity.Location = new System.Drawing.Point(10, 155);
-            this.trkOpacity.Maximum = 100;
-            this.trkOpacity.Minimum = 10;
-            this.trkOpacity.Name = "trkOpacity";
-            this.trkOpacity.Size = new System.Drawing.Size(280, 45);
-            this.trkOpacity.TabIndex = 4;
-            this.trkOpacity.TickStyle = System.Windows.Forms.TickStyle.None; // Tirtıkları gizleyip daha modern bir görünüm verdik
-            this.trkOpacity.Value = 85;
-            
+            trkOpacity.Location = new System.Drawing.Point(16, 255);
+            trkOpacity.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            trkOpacity.Maximum = 100;
+            trkOpacity.Minimum = 10;
+            trkOpacity.Name = "trkOpacity";
+            trkOpacity.Size = new System.Drawing.Size(440, 69);
+            trkOpacity.TabIndex = 4;
+            trkOpacity.TickStyle = System.Windows.Forms.TickStyle.None;
+            trkOpacity.Value = 85;
             // 
             // btnToggleEyeCare
             // 
-            this.btnToggleEyeCare.BackColor = System.Drawing.Color.FromArgb(99, 102, 241); // Accent Mavi
-            this.btnToggleEyeCare.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnToggleEyeCare.FlatAppearance.BorderSize = 0;
-            this.btnToggleEyeCare.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnToggleEyeCare.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 162);
-            this.btnToggleEyeCare.ForeColor = System.Drawing.Color.White;
-            this.btnToggleEyeCare.Location = new System.Drawing.Point(25, 320);
-            this.btnToggleEyeCare.Name = "btnToggleEyeCare";
-            this.btnToggleEyeCare.Size = new System.Drawing.Size(180, 40);
-            this.btnToggleEyeCare.TabIndex = 1;
-            this.btnToggleEyeCare.Text = "Takibi Başlat";
-            this.btnToggleEyeCare.UseVisualStyleBackColor = false;
-            
+            btnToggleEyeCare.BackColor = System.Drawing.Color.FromArgb(((int)((byte)99)), ((int)((byte)102)), ((int)((byte)241)));
+            btnToggleEyeCare.Cursor = System.Windows.Forms.Cursors.Hand;
+            btnToggleEyeCare.FlatAppearance.BorderSize = 0;
+            btnToggleEyeCare.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            btnToggleEyeCare.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)162));
+            btnToggleEyeCare.ForeColor = System.Drawing.Color.White;
+            btnToggleEyeCare.Location = new System.Drawing.Point(39, 527);
+            btnToggleEyeCare.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            btnToggleEyeCare.Name = "btnToggleEyeCare";
+            btnToggleEyeCare.Size = new System.Drawing.Size(283, 66);
+            btnToggleEyeCare.TabIndex = 1;
+            btnToggleEyeCare.Text = "Takibi Başlat";
+            btnToggleEyeCare.UseVisualStyleBackColor = false;
             // 
             // lblStatus
             // 
-            this.lblStatus.AutoSize = true;
-            this.lblStatus.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, 162);
-            this.lblStatus.Location = new System.Drawing.Point(220, 330);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(136, 20);
-            this.lblStatus.TabIndex = 0;
-            this.lblStatus.Text = "Durum: Bekleniyor";
-            
+            lblStatus.AutoSize = true;
+            lblStatus.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)162));
+            lblStatus.Location = new System.Drawing.Point(346, 544);
+            lblStatus.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            lblStatus.Name = "lblStatus";
+            lblStatus.Size = new System.Drawing.Size(208, 31);
+            lblStatus.TabIndex = 0;
+            lblStatus.Text = "Durum: Bekleniyor";
             // 
             // ucEyeCare
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.lblStatus);
-            this.Controls.Add(this.btnToggleEyeCare);
-            this.Controls.Add(this.pnlVisualCard);
-            this.Controls.Add(this.pnlTimingCard);
-            this.Controls.Add(this.lblPageTitle);
-            this.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, 162);
-            this.Name = "ucEyeCare";
-            this.Size = new System.Drawing.Size(750, 480);
-            
-            this.pnlTimingCard.ResumeLayout(false);
-            this.pnlTimingCard.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numWorkMin)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numRestSec)).EndInit();
-            this.pnlVisualCard.ResumeLayout(false);
-            this.pnlVisualCard.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trkOpacity)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new System.Drawing.SizeF(11F, 28F);
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            Controls.Add(lblStatus);
+            Controls.Add(btnToggleEyeCare);
+            Controls.Add(pnlVisualCard);
+            Controls.Add(pnlTimingCard);
+            Controls.Add(lblPageTitle);
+            Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)162));
+            Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            Size = new System.Drawing.Size(1179, 791);
+            pnlTimingCard.ResumeLayout(false);
+            pnlTimingCard.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numWorkMin).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numRestSec).EndInit();
+            pnlVisualCard.ResumeLayout(false);
+            pnlVisualCard.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)trkOpacity).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

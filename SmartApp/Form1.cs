@@ -17,6 +17,7 @@ public partial class Form1 : Form
     {
         ThemeManager.SetTheme(SettingsManager.Instance.Current.IsDarkMode);
         InitializeComponent();
+        SetupFocusLossOnBackgroundClick(this);
         ThemeManager.ThemeChanged += (s, e) => ApplyTheme();
         ApplyTheme();
 
@@ -54,6 +55,26 @@ public partial class Form1 : Form
             }
     }
 
+    private void SetupFocusLossOnBackgroundClick(Control container)
+    {
+        if (container is not TextBox and not ComboBox and not NumericUpDown and not Button)
+        {
+            container.MouseDown -= OnBackgroundMouseDown; 
+                
+            container.MouseDown += OnBackgroundMouseDown; 
+        }
+
+        foreach (Control child in container.Controls)
+        {
+            SetupFocusLossOnBackgroundClick(child);
+        }
+    }
+        
+    private void OnBackgroundMouseDown(object? sender, MouseEventArgs e)
+    {
+        this.ActiveControl = null;
+    }
+    
     private void AnaMenuyuHazirla()
     {
         _mainMenuControlPage = new MainMenuControl { Dock = DockStyle.Fill };

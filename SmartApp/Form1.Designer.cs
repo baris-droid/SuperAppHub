@@ -66,9 +66,9 @@ partial class Form1
         lblVersion.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)162));
         lblVersion.Location = new System.Drawing.Point(12, 759);
         lblVersion.Name = "lblVersion";
-        lblVersion.Size = new System.Drawing.Size(100, 23);
+        lblVersion.Size = new System.Drawing.Size(115, 23);
         lblVersion.TabIndex = 7;
-        lblVersion.Text = " v1.7.0 Beta";
+        lblVersion.Text = " v1.7.0 Beta.1";
         lblVersion.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
         // 
         // pnlNavIndicator

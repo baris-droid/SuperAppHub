@@ -21,6 +21,7 @@ namespace SmartApp
         {
             ThemeManager.SetTheme(SettingsManager.Instance.Current.IsDarkMode);
             InitializeComponent();
+            SetupFocusLossOnBackgroundClick(this);
             ThemeManager.ThemeChanged += (s, e) => ApplyTheme();
             ApplyTheme(); // Tema sistemini bu arayüze uyguluyoruz
 
@@ -63,6 +64,7 @@ namespace SmartApp
             label2.ForeColor = ThemeManager.TextSecondary;
             label3.ForeColor = ThemeManager.TextSecondary;
             label4.ForeColor = ThemeManager.TextSecondary;
+            lblStatus.ForeColor = ThemeManager.TextSecondary;
 
             // Sayı seçiciler (NumericUpDown)
             numWorkMin.BackColor = ThemeManager.ContentBackground;
@@ -75,6 +77,26 @@ namespace SmartApp
             cmbLocation.ForeColor = ThemeManager.TextPrimary;
             
             ThemeManager.FormatControls(this.Controls);
+        }
+        
+        private void SetupFocusLossOnBackgroundClick(Control container)
+        {
+            if (container is not TextBox and not ComboBox and not NumericUpDown and not Button)
+            {
+                container.MouseDown -= OnBackgroundMouseDown; 
+                
+                container.MouseDown += OnBackgroundMouseDown; 
+            }
+
+            foreach (Control child in container.Controls)
+            {
+                SetupFocusLossOnBackgroundClick(child);
+            }
+        }
+        
+        private void OnBackgroundMouseDown(object? sender, MouseEventArgs e)
+        {
+            this.ActiveControl = null;
         }
 
         private void LoadUIFromSettings()
