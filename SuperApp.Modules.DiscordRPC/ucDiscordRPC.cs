@@ -26,7 +26,8 @@ namespace SmartApp
             this.Controls.Add(_focusSink);
             SetupFocusLossOnBackgroundClick(this);
             
-            ThemeManager.ThemeChanged += (s, e) => ApplyTheme();
+            //ThemeManager.ThemeChanged += (s, e) => ApplyTheme();
+            ThemeManager.ThemeChanged += OnThemeChanged;
             ApplyTheme(); // Tema sistemimizi bu sayfaya da uyguluyoruz
             
             btnConnect.Click += btnConnect_Click;
@@ -37,6 +38,11 @@ namespace SmartApp
 
             // Arayüzü yüklerken doğrudan SettingsManager üzerinden bellekteki güncel kopyayı okuyoruz
             LoadUIFromSettings();
+        }
+
+        private void OnThemeChanged(object? sender, EventArgs e)
+        {
+            ApplyTheme();
         }
         
         private void ApplyTheme()
@@ -172,6 +178,7 @@ namespace SmartApp
         // --- BELLEK TEMİZLİĞİ ---
         public void Cleanup()
         {
+            ThemeManager.ThemeChanged -= OnThemeChanged;
             // Uygulama kapanırken son durumu garanti altına almak için diske yaz
             UpdateAndSaveSettings();
 

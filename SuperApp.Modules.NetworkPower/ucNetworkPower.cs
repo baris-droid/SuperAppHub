@@ -30,7 +30,10 @@ namespace SmartApp
             this.Controls.Add(_focusSink);
             SetupFocusLossOnBackgroundClick(this);
             
-            ThemeManager.ThemeChanged += (s, e) => ApplyTheme();
+            //ThemeManager.ThemeChanged += (s, e) => ApplyTheme();
+
+            ThemeManager.ThemeChanged += OnThemeChanged;
+            
             ApplyTheme(); // Temayı uyguluyoruz
             _networkBackend = new NetworkPowerNativeWrapper();
 
@@ -48,6 +51,11 @@ namespace SmartApp
 
             cmbActionType.SelectedIndexChanged -= UIElement_ValueChanged;
             cmbActionType.SelectedIndexChanged += UIElement_ValueChanged;
+        }
+
+        private void OnThemeChanged(object? sender, EventArgs e)
+        {
+            ApplyTheme();
         }
 
         private void ApplyTheme()
@@ -262,6 +270,8 @@ namespace SmartApp
             UpdateAndSaveSettings(); // Ana form kapanırken son bir kez kaydet
             StopMonitoring();        // Açık kalmış olabilecek izlemeyi güvenlice durdur
             _cancellationTokenSource?.Dispose(); // Bellek sızıntısını (Memory Leak) önle
+            
+            ThemeManager.ThemeChanged -= OnThemeChanged;
         }
     }
 }

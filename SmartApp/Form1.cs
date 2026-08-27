@@ -12,13 +12,26 @@ public partial class Form1 : Form
     // --- SİSTEM TEPSİSİ VE KAPANMA YÖNETİMİ ---
     private NotifyIcon _trayIcon = null!;
     private ContextMenuStrip _trayMenu = null!;
+    
+    private readonly Button _focusSink;
 
     public Form1()
     {
+        _focusSink = new Button
+        {
+            Location = new Point(-1000, -1000), // Ekranın tamamen dışına taşı
+            Size = new Size(1, 1),              // Boyutunu minimumda tut
+            TabStop = false,                    // Klavyedeki "Tab" tuşuyla odaklanılmasını engelle
+            Text = string.Empty
+        };
+        this.Controls.Add(_focusSink);
+        
         ThemeManager.SetTheme(SettingsManager.Instance.Current.IsDarkMode);
         InitializeComponent();
         SetupFocusLossOnBackgroundClick(this);
-        ThemeManager.ThemeChanged += (s, e) => ApplyTheme();
+        //ThemeManager.ThemeChanged += (s, e) => ApplyTheme();
+        
+        ThemeManager.ThemeChanged += OnThemeChanged;
         ApplyTheme();
 
         _moduleManager = new ModuleManager();
@@ -26,6 +39,11 @@ public partial class Form1 : Form
         SetupTrayIcon();
         AnaMenuyuHazirla();
         ModulleriYukleVeArayuzuOlustur();
+    }
+
+    private void OnThemeChanged(object? sender, EventArgs e)
+    {
+        ApplyTheme();
     }
 
     private void ApplyTheme()
@@ -72,7 +90,7 @@ public partial class Form1 : Form
         
     private void OnBackgroundMouseDown(object? sender, MouseEventArgs e)
     {
-        this.ActiveControl = null;
+        _focusSink.Focus();
     }
     
     private void AnaMenuyuHazirla()
@@ -191,6 +209,8 @@ public partial class Form1 : Form
 
     private void ForceExit()
     {
+        
+        ThemeManager.ThemeChanged -= OnThemeChanged;
         _moduleManager.UnloadAll();
         _trayIcon.Dispose();
         Environment.Exit(0);
@@ -206,6 +226,7 @@ public partial class Form1 : Form
         }
         else
         {
+            ThemeManager.ThemeChanged -= OnThemeChanged;
             _moduleManager.UnloadAll();
             Thread.Sleep(100);
 
@@ -213,4 +234,5 @@ public partial class Form1 : Form
             base.OnFormClosing(e);
         }
     }
+    
 }

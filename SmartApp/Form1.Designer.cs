@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+﻿﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace SmartApp;
@@ -68,7 +68,7 @@ partial class Form1
         lblVersion.Name = "lblVersion";
         lblVersion.Size = new System.Drawing.Size(115, 23);
         lblVersion.TabIndex = 7;
-        lblVersion.Text = " v1.7.0 Beta.2";
+        lblVersion.Text = " v1.7.0 Beta.3\r\n";
         lblVersion.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
         // 
         // pnlNavIndicator

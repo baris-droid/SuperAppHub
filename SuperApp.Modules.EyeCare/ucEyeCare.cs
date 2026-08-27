@@ -35,7 +35,8 @@ namespace SmartApp
             this.Controls.Add(_focusSink);
             SetupFocusLossOnBackgroundClick(this);
             
-            ThemeManager.ThemeChanged += (s, e) => ApplyTheme();
+            //ThemeManager.ThemeChanged += (s, e) => ApplyTheme();
+            ThemeManager.ThemeChanged += OnThemeChanged;
             ApplyTheme(); // Tema sistemini bu arayüze uyguluyoruz
 
             _eyeBackend = new EyeCareNativeWrapper();
@@ -56,6 +57,11 @@ namespace SmartApp
 
             trkOpacity.Scroll -= UIElement_ValueChanged;
             trkOpacity.Scroll += UIElement_ValueChanged;
+        }
+
+        private void OnThemeChanged(object? sender, EventArgs e)
+        {
+            ApplyTheme();
         }
 
         private void ApplyTheme()
@@ -256,6 +262,7 @@ namespace SmartApp
 
         public void Cleanup()
         {
+            ThemeManager.ThemeChanged -= OnThemeChanged;
             StopEyeCare();
             _cancellationTokenSource?.Dispose();
             _notificationForm?.Dispose(); // Bellek sızıntısını önlemek amacıyla

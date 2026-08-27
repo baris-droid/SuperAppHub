@@ -59,8 +59,12 @@ namespace SmartApp
         {
             ThemeManager.SetTheme(SettingsManager.Instance.Current.IsDarkMode);
             InitializeComponent(); 
-            ThemeManager.ThemeChanged += (s, e) => ApplyTheme();
+            
+            
+            //ThemeManager.ThemeChanged += (s, e) => ApplyTheme();
             ApplyTheme(); // Tema sistemini uyguluyoruz
+
+            ThemeManager.ThemeChanged += OnThemeChanged;
 
             _micBackend = new MicNativeWrapper();
 
@@ -79,6 +83,11 @@ namespace SmartApp
 
             // Arayüzü bellekteki mevcut ayarlarla doldur
             LoadSettingsFromManager();
+        }
+
+        private void OnThemeChanged(object? sender, EventArgs e)
+        {
+            ApplyTheme();
         }
 
         private void ApplyTheme()
@@ -299,6 +308,8 @@ namespace SmartApp
             UnregisterHotKey(_hotkeyListener.Handle, HOTKEY_ID);
             _hotkeyListener.Dispose();
             _micBackend.SetMute(false); // Uygulama kapanırken mikrofonu kesin aç
+            
+            ThemeManager.ThemeChanged -= OnThemeChanged;
         }
     }
 }
