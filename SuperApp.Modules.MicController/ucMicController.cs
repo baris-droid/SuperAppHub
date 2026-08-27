@@ -58,8 +58,7 @@ namespace SmartApp
         public ucMicController()
         {
             ThemeManager.SetTheme(SettingsManager.Instance.Current.IsDarkMode);
-            InitializeComponent();
-            SetupFocusLossOnBackgroundClick(this);
+            InitializeComponent(); 
             ThemeManager.ThemeChanged += (s, e) => ApplyTheme();
             ApplyTheme(); // Tema sistemini uyguluyoruz
 
@@ -115,26 +114,6 @@ namespace SmartApp
             btnSetToggleKey.FlatAppearance.BorderColor = ThemeManager.ButtonDown;
             
             ThemeManager.FormatControls(this.Controls);
-        }
-        
-        private void SetupFocusLossOnBackgroundClick(Control container)
-        {
-            if (container is not TextBox and not ComboBox and not NumericUpDown and not Button)
-            {
-                container.MouseDown -= OnBackgroundMouseDown; 
-                
-                container.MouseDown += OnBackgroundMouseDown; 
-            }
-
-            foreach (Control child in container.Controls)
-            {
-                SetupFocusLossOnBackgroundClick(child);
-            }
-        }
-        
-        private void OnBackgroundMouseDown(object? sender, MouseEventArgs e)
-        {
-            this.ActiveControl = null;
         }
 
         // Mikrofon durumuna göre etiket metnini ve rengini güncelleyen yardımcı metod

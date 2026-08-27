@@ -13,6 +13,8 @@ namespace SmartApp
         private readonly IInputMasterBackend _inputBackend;
         private CancellationTokenSource? _cancellationTokenSource;
         private bool _isRunning = false;
+        
+        private readonly Button _focusSink;
 
         private enum KeyWaitTarget { None, Scroll, Volume }
         private KeyWaitTarget _waitTarget = KeyWaitTarget.None;
@@ -21,7 +23,17 @@ namespace SmartApp
         {
             ThemeManager.SetTheme(SettingsManager.Instance.Current.IsDarkMode);
             InitializeComponent();
+            
+            _focusSink = new Button
+            {
+                Location = new Point(-1000, -1000), // Ekranın tamamen dışına taşı
+                Size = new Size(1, 1),              // Boyutunu minimumda tut
+                TabStop = false,                    // Klavyedeki "Tab" tuşuyla yanlışlıkla odaklanılmasını engelle
+                Text = string.Empty
+            };
+            this.Controls.Add(_focusSink);
             SetupFocusLossOnBackgroundClick(this);
+            
             ThemeManager.ThemeChanged += (s, e) => ApplyTheme();
             ApplyTheme(); // Temayı uyguluyoruz
 
@@ -103,7 +115,6 @@ namespace SmartApp
             if (container is not TextBox and not ComboBox and not NumericUpDown and not Button)
             {
                 container.MouseDown -= OnBackgroundMouseDown; 
-                
                 container.MouseDown += OnBackgroundMouseDown; 
             }
 
@@ -115,7 +126,7 @@ namespace SmartApp
         
         private void OnBackgroundMouseDown(object? sender, MouseEventArgs e)
         {
-            this.ActiveControl = null;
+            _focusSink.Focus();
         }
 
         private void LoadUIFromSettings()

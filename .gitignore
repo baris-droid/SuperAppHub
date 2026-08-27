@@ -43,5 +43,5 @@ ehthumbs.db
 # ==========================================
 # İSTİSNALAR (PROJEYE ÖZEL İZİNLER)
 # ==========================================
-!NativeLibs/
-!NativeLibs/*.dll
+!**/NativeLibs/
+!**/NativeLibs/*.dll
