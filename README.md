@@ -3,7 +3,7 @@
 ![.NET](https://img.shields.io/badge/.NET-8.0-512BD4?style=flat&logo=dotnet)
 ![Platform](https://img.shields.io/badge/Platform-Windows-0078D6?style=flat&logo=windows)
 ![License](https://img.shields.io/badge/License-MIT-green.svg)
-![Version](https://img.shields.io/badge/Version-1.7.0--beta.1-orange)
+![Version](https://img.shields.io/badge/Version-1.7.0--beta.2-orange)
 
 SuperApp Hub is a highly modular, performance-driven Windows desktop utility application built with C# and .NET 8.0. It provides a suite of advanced system management tools, utilizing custom-built native C libraries for low-level system hooks and optimized resource consumption.
 ## 🌍 Language Support
