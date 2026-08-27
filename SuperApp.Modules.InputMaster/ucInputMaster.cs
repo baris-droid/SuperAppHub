@@ -34,7 +34,8 @@ namespace SmartApp
             this.Controls.Add(_focusSink);
             SetupFocusLossOnBackgroundClick(this);
             
-            ThemeManager.ThemeChanged += (s, e) => ApplyTheme();
+            //ThemeManager.ThemeChanged += (s, e) => ApplyTheme();
+            ThemeManager.ThemeChanged += OnThemeChanged;
             ApplyTheme(); // Temayı uyguluyoruz
 
             _inputBackend = new InputMasterNativeWrapper();
@@ -69,6 +70,10 @@ namespace SmartApp
             numVolSens.ValueChanged += UIElement_ValueChanged;
         }
 
+        private void OnThemeChanged(object? sender, EventArgs e)
+        {
+            ApplyTheme();
+        }
         private void ApplyTheme()
         {
             // Ana arka plan
@@ -281,6 +286,7 @@ namespace SmartApp
 
         public void Cleanup()
         {
+            ThemeManager.ThemeChanged -= OnThemeChanged;
             StopInputMaster();
             _cancellationTokenSource?.Dispose();
         }

@@ -10,12 +10,20 @@ public partial class MainMenuControl : UserControl
         InitializeComponent();
 
         // Uygulama genelinde tema değiştiğinde bu sayfanın da anında güncellenmesini sağla
-        ThemeManager.ThemeChanged += (sender, e) => ApplyTheme();
+        //ThemeManager.ThemeChanged += (sender, e) => ApplyTheme();
+        ThemeManager.ThemeChanged += OnThemeChanged;
+        
+        this.Disposed += (sender, e) => ThemeManager.ThemeChanged -= OnThemeChanged;
 
         ApplyTheme(); // Tema sistemimizi bu sayfaya da uyguluyoruz
         LoadSettings();
     }
 
+    private void OnThemeChanged(object? sender, EventArgs e)
+    {
+        ApplyTheme();
+    }
+    
     private void ApplyTheme()
     {
         // Ana arka planı ThemeManager'dan alıyoruz (Açık gri)
