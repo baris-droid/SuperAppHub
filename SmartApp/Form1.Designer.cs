@@ -68,7 +68,7 @@ partial class Form1
         lblVersion.Name = "lblVersion";
         lblVersion.Size = new System.Drawing.Size(115, 23);
         lblVersion.TabIndex = 7;
-        lblVersion.Text = " v1.7.0 Beta.3\r\n";
+        lblVersion.Text = " v1.7.0\r\n";
         lblVersion.TextAlign = System.Drawing.ContentAlignment.BottomLeft;
         // 
         // pnlNavIndicator
